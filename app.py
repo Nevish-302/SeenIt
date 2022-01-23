@@ -23,7 +23,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure CS50 Library to use SQLite database
-db = SQL("sqlite:///finance.db")
+db = SQL("sqlite:///SeenIt.db")
 
 @app.after_request
 def after_request(response):
@@ -72,3 +72,26 @@ def login():
 @login_required
 def index():
     return render_template("index.html")
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        name = request.form.get("username")
+        password = request.form.get("password")
+        # Checking password and confirmation
+        confirmation = request.form.get("confirmation")
+        if not name:
+            return apology("Must Provide Username")
+        user = []
+        # Checking if the username already exists
+        lis = db.execute("SELECT username FROM users")
+        for row in lis:
+            user.append(row["username"])
+        if name in user:
+            return apology("USERNAME already exists")
+        if not password or not confirmation or password != confirmation:
+            return apology("Must Provide Correct Password And Confirmation")
+        else:
+            # adding the new user to users table
+            db.execute("INSERT INTO users(username, hash, tablename) VALUES(?, ?, ?);", name, generate_password_hash(password), name)
+            return render_template("login.html")
