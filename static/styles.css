@@ -30,9 +30,11 @@ nav .navbar-brand .green
     height: 100%;
 }
 .log{
-    background-color: black;
-    border: 2px solid white;
-    border-radius: 8px;
+    margin-bottom: 15px;
+}
+.log :hover{
+    background-color: white;
+    color: black;
 }
 body {
     overflow: hidden;
@@ -43,14 +45,16 @@ body {
     margin-top: 0%;
     margin-bottom: 0%;
 }
-
+.posters{
+    margin-left: 0px;
+}
 .posters > img
 {
     padding: 0;
     margin: 0;
-    border: 2px solid black;
+    border: 2px solid white;
     border-radius: 10px;
-    width: 18%;
+    width: 19.7%;
 }
 .sec_form
 {
