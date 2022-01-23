@@ -1,17 +1,60 @@
 {% extends "layout.html" %}
-
 {% block title %}
     Log In
 {% endblock %}
 {% block main %}
-    <form action="/login" method="post" class = "login_form">
+<script>
+    function register()
+    {
+    document.getElementById("login").style.display = "None";
+    document.getElementById("register").style.display = "flex";
+    }
+
+    function login()
+    {
+    document.getElementById("register").style.display = "None";
+    document.getElementById("login").style.display = "flex";
+    }
+</script>
+<section>
+<span class="forms">
+    <span style="float: right;">
+</span>
+    <form action="/login" method="post" class = "login_form" id = "login">
         <div class="mb-3">
             <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text">
         </div>
         <div class="mb-3">
             <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
         </div>
-        <button class="btn btn-primary" type="submit">Log In</button>
+        <button class="log btn btn-primary" type="submit">Log In</button>
+        <a class="log btn btn-primary" onclick="register();">Register Instead</a>
     </form>
-
+    <form action="/register" method="post" class = "login_form" id = "register" style="display: None;">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="password" name="confirmation" placeholder="Confirmation" type="password">
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+        <a class="log btn btn-primary" onclick="login();">Login Instead</a>
+    </form>
+</span>
+        <span class="posters">
+            <img src="/static/images/login/anime.jpg">
+        </span>
+        <span class="posters">
+            <img src="/static/images/login/asian-drama.jpg">
+        </span>
+        <span class="posters">
+            <img src="/static/images/login/manga.jpg">
+        </span>
+        <span class="posters">
+            <img src="/static/images/login/tv-series.jpg">
+        </span>
+    </section>
 {% endblock %}
