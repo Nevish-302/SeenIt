@@ -38,6 +38,9 @@ nav .navbar-brand .green
 }
 body {
     overflow: hidden;
+    background:url(/static/images/backgrounds/b1.png);
+    background-repeat:no-repeat;
+    background-position:fixed;
 }
 .heading
 {
@@ -54,7 +57,7 @@ body {
     margin: 0;
     border: 2px solid white;
     border-radius: 10px;
-    width: 19.7%;
+    max-width: 19.7%;
 }
 .sec_form
 {
@@ -64,6 +67,11 @@ body {
 }
 .forms
 {
-    width: 20%;
+    max-width: 20%;
     flex-direction: column;
+}
+.add{
+    display: flex;
+    flex-direction: row;
+    margin-left: 20%;
 }
