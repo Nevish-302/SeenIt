@@ -1,9 +1,55 @@
 {% extends "layout.html" %}
 {% block title %} Add/Update {% endblock %}
 {% block main %}
-<form action="submit" method="post" class="add">
+<form action="/addupdate" method="post" class="add">
     <div class="mb-3">
-        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="name" name="name" placeholder="Name" type="text">
+    </div>
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="seen" name="seen" placeholder="Seen" type="text">
+    </div>
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="total" name="total" placeholder="Total" type="text">
+    </div>
+      <div class="input-group mb-3" style="width: 10%;">
+        <select class="form-select" id="type" name="type">
+          <option selected>Choose...</option>
+          <option value="manga">Manga</option>
+          <option value="anime">Anime</option>
+          <option value="television">Television</option>
+          <option value="asiandrama">Asian Drama</option>
+        </select>
+      </div>
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="times" name="times" placeholder="Repetitions" type="text">
+    </div>
+    <div class="mb-3">
+        <button class="btn btn-dark" type="submit">Add</button>
     </div>
 </form>
+<table class="table table-dark table-hover">
+    <div>
+    <tr>
+        <th>Name</th>
+        <th></th>
+        <th>Progress</th>
+        <th>Type</th>
+        <th>Source</th>
+        <th>When</th>
+        <th>Repetitions</th>
+    </tr>
+</div>
+    {% for row in table %}
+        <tr>
+            <td>{{row['name']}}</td>
+            <td><form class="seenupdate"><input autocomplete="off" class="form-control mx-auto" style="width: 20%;text-align: center;" id="seen" name="seen" placeholder="{{row['seen']}}" type="text"></td>
+            <td>{{row['seen']}}/{{row['total']}}</td>
+            <td>{{row['type']}}</td>
+            <td>{{row['source']}}</td>
+            <td>{{row['time']}}</td>
+            <td>{{row['times']}}</td>
+            <td><button class="btn btn-outline-light" type="reset" onclick=";">X</button></td>
+        </tr>
+    {% endfor %}
+</table>
 {% endblock %}

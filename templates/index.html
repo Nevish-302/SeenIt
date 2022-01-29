@@ -5,5 +5,95 @@
 {% endblock %}
 
 {% block main %}
-
+<script>
+    function show(Type)
+    {
+        var manga = document.getElementsByClassName('manga');
+        for(var i=0; i<manga.length; i++) 
+        { 
+            manga[i].style.display='none';
+        }
+        var anime = document.getElementsByClassName('anime');
+        for(var i=0; i<anime.length; i++) 
+        { 
+            anime[i].style.display='none';
+        }
+        var television = document.getElementsByClassName('television');
+        for(var i=0; i<television.length; i++) 
+        { 
+            television[i].style.display='none';
+        }
+        var asiandrama = document.getElementsByClassName('asiandrama');
+        for(var i=0; i<asiandrama.length; i++) 
+        { 
+            asiandrama[i].style.display='none';
+        }
+        var Show = document.getElementsByClassName(Type);
+        for(var i=0; i<Show.length; i++) 
+        { 
+            Show[i].style.display='';
+        }
+    }
+</script>
+<div class="btn-group" role="group">
+    <button class="btn btn-outline-dark" type="reset" onclick="show('manga');">Manga</button>
+    <button class="btn btn-outline-dark" type="reset" onclick="show('anime');">Anime</button>
+    <button class="btn btn-outline-dark" type="reset" onclick="show('television');">TV Series</button>
+    <button class="btn btn-outline-dark" type="reset" onclick="show('asiandrama');">AsianDrama</button>
+</div>
+<br><br>
+<table class="table table-dark table-hover">
+    <div>
+    <tr>
+        <th>Name</th>
+        <th>Progress</th>
+        <th>Type</th>
+        <th>Source</th>
+        <th>When</th>
+        <th>Repetitions</th>
+    </tr>
+</div>
+    {% for row in table %}
+    {% if row['type'] == 'manga' %}
+        <tr class="manga">
+            <td>{{row['name']}}</td>
+            <td>{{row['seen']}}/{{row['total']}}</td>
+            <td>{{row['type']}}</td>
+            <td>{{row['source']}}</td>
+            <td>{{row['time']}}</td>
+            <td>{{row['times']}}</td>
+        </tr>
+    {% endif %}
+        {% if row['type'] == 'anime' %}
+        <tr class="anime">
+            <td>{{row['name']}}</td>
+            <td>{{row['seen']}}/{{row['total']}}</td>
+            <td>{{row['type']}}</td>
+            <td>{{row['source']}}</td>
+            <td>{{row['time']}}</td>
+            <td>{{row['times']}}</td>
+        </tr>
+        {% endif %}
+        {% if row['type'] == 'television' %}
+        <tr class = 'television'>
+            <td>{{row['name']}}</td>
+            <td>{{row['seen']}}/{{row['total']}}</td>
+            <td>{{row['type']}}</td>
+            <td>{{row['source']}}</td>
+            <td>{{row['time']}}</td>
+            <td>{{row['times']}}</td>
+        </tr>
+        {% endif %}
+        {% if row['type'] == 'asiandrama' %}
+        <tr class='asiandrama'>
+            <td>{{row['name']}}</td>
+            <td>{{row['seen']}}/{{row['total']}}</td>
+            <td>{{row['type']}}</td>
+            <td>{{row['source']}}</td>
+            <td>{{row['time']}}</td>
+            <td>{{row['times']}}</td>
+        </tr>
+        {% endif %}
+    {% endfor %}
+</table>
 {% endblock %}
