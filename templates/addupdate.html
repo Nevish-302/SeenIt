@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block title %} Add/Update {% endblock %}
+{% block main %}
+<form action="submit" method="post" class="add">
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text">
+    </div>
+</form>
+{% endblock %}
