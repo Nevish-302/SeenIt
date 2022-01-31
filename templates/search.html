@@ -1,24 +1,28 @@
 {% extends "layout.html" %}
 {% block title %} {% endblock %}
 {% block main %}
-<form action="/search" method="post" class="searchbox">
-<div class="input-group mb-3">
-    <input type="text" class="form-control"  style="font-family:Bangers;font-size: 50px;" placeholder="Televison Show Name" name = "name" id = "name">
-    <button class="btn btn-outline-dark" type="submit" style="font-family:Bangers;color: white;font-size: 50px;">Search</button>
-  </div>
-</form>
-<br><br><br>
 <div class="search">
   <div>
-  <img src="/static/images/search/tvonly.png">
-  <span class="searchtext"><h1>TV SERIES ONLY</h1></span>
+  <img src="/static/images/search/front.png">
 </div>
-<div>
-  <img src="/static/images/search/between.png">
-  </div>
-  <div>
-  <img src="/static/images/search/power.png">
-  <span class="searchtext"><h1>POWERED BY IMDB</h1></span>
+<div class="sbs">
+<form action="/search" method="post" class="searchbox">
+  <div class="input-group mb-3">
+      <input type="text" class="form-control"  style="font-family:Bangers;font-size: 50px;" placeholder="Televison Show Name" name = "name" id = "name">
+      <button class="btn btn-outline-dark" type="submit" style="font-family:Bangers;color: white;font-size: 50px;text-shadow: 5px 5px 5px black;">Search</button>
+    </div>
+  </form>
+  <form action="/searchanime" method="post" class="searchbox">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control"  style="font-family:Bangers;font-size: 50px;" placeholder="Anime Name" name = "name" id = "name">
+        <button class="btn btn-outline-dark" type="submit" style="font-family:Bangers;color: white;font-size: 50px;text-shadow: 5px 5px 5px black;">Search</button>
+      </div>
+    </form>  
+  
+</div>
+    <div>
+  <img src="/static/images/search/end.png">
   </div>
 </div>
+
 {% endblock %}

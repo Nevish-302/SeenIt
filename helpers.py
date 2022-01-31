@@ -60,6 +60,27 @@ def lookup(name):
     except (KeyError, TypeError, ValueError):
         return None
 
+def lookupanime(name):
+    try:
+        url = "https://jikan1.p.rapidapi.com/search/anime"
+        querystring = {"q":name}
+        headers = {
+                'x-rapidapi-host': "jikan1.p.rapidapi.com",
+                'x-rapidapi-key': "1b7269acadmsh7b21a1bbe7c535bp150b55jsn03e7ccad58a3"
+        }
+        response = requests.request("GET", url, headers=headers, params=querystring)
+    except requests.RequestException:
+        return None
+    try:
+        quote = response.json()
+        resultlist = []
+        results = quote["results"]
+        for result in results:
+            resultlist.append(result)
+        return resultlist
+    except (KeyError, TypeError, ValueError):
+        return None
+
 
 def usd(value):
     """Format value as USD."""

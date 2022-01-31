@@ -12,7 +12,7 @@ from flask_mail import Mail, Message
 from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.security import check_password_hash, generate_password_hash
-from helpers import apology, login_required, lookup, usd
+from helpers import apology, login_required, lookup, lookupanime, usd
 from mail import confirmmail, confirm_email
 
 # Configure application
@@ -193,6 +193,14 @@ def search():
     if request.method == 'POST':
         name = request.form.get("name")
         return render_template("results.html", results=lookup(name)) 
+
+@app.route("/searchanime", methods=["GET", "POST"])
+def searchanime():
+    if request.method == 'GET':
+        return render_template("search.html")
+    if request.method == 'POST':
+        name = request.form.get("name")
+        return render_template("resultsanime.html", results=lookupanime(name))
 
 @app.route("/change", methods=["GET", "POST"])
 def change():

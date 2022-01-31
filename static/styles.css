@@ -41,7 +41,7 @@ body {
     overflow-x: hidden;
     background:url(/static/images/backgrounds/b1.png);
     background-repeat:no-repeat;
-    background-position:fixed;
+    background-attachment:fixed;
 }
 .heading
 {
@@ -94,7 +94,7 @@ body {
 }
 .title
 {
-    font-size: 30px;
+    
 }
 .cards
 {
@@ -103,9 +103,7 @@ body {
 }
 .searchbox
 {
-    width:50%;
     display: flex;
-    margin: auto;
     justify-content: center;
 }
 .search > div > img
@@ -133,4 +131,51 @@ body {
 .imgcollection > img
 {
     max-height:700px;
+    margin: auto;
+}
+.addupdatetable
+{
+    width: 48%;
+}
+.updatedelete
+{
+    display: flex;
+    flex-direction: row;
+}
+.dividup
+{
+    justify-content: center;    
+}
+
+.seenupdate
+{
+    margin-left: 10%;
+    display: flex;
+    flex-direction: row;
+}
+.seendelete
+{
+    margin-left: 10%;
+    display: flex;
+    flex-direction: row;
+}
+.grid_
+{
+    display: inline;
+}
+.grid_element
+{
+    width: 20%;
+    margin: 10px;
+    background-color: rgba(255, 255, 255, .5);
+    border: 4px solid white;
+    box-shadow: 5px 5px 5px;
+    max-width: 310px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content:space-around;
+}
+.sbs
+{
+    padding-top: 10%;
 }

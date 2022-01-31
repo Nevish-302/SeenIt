@@ -20,6 +20,9 @@
           <option value="asiandrama">Asian Drama</option>
         </select>
       </div>
+      <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="tpe" name="tpe" placeholder="Time Per Episode" type="text">
+    </div>
     <div class="mb-3">
         <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="times" name="times" placeholder="Repetitions" type="text">
     </div>
@@ -27,29 +30,64 @@
         <button class="btn btn-dark" type="submit">Add</button>
     </div>
 </form>
-<table class="table table-dark table-hover">
+<section class="updatedelete">
+<table class="addupdatetable table table-dark table-hover">
     <div>
     <tr>
+        <th>ID</th>
         <th>Name</th>
-        <th></th>
         <th>Progress</th>
         <th>Type</th>
-        <th>Source</th>
+        <th>TEP (Minutes)</th>
         <th>When</th>
-        <th>Repetitions</th>
+        <th>Times</th>
     </tr>
 </div>
     {% for row in table %}
         <tr>
+            <td>{{row['id']}}</td>
             <td>{{row['name']}}</td>
-            <td><form class="seenupdate"><input autocomplete="off" class="form-control mx-auto" style="width: 20%;text-align: center;" id="seen" name="seen" placeholder="{{row['seen']}}" type="text"></td>
             <td>{{row['seen']}}/{{row['total']}}</td>
             <td>{{row['type']}}</td>
-            <td>{{row['source']}}</td>
+            <td>{{row['time_per_episode']}}</td>
             <td>{{row['time']}}</td>
             <td>{{row['times']}}</td>
-            <td><button class="btn btn-outline-light" type="reset" onclick=";">X</button></td>
         </tr>
     {% endfor %}
 </table>
+<div class="divdup">
+    <div class="diviup">
+        <form class="seenupdate" action="/update" method="POST">
+            <div class="mb-3">
+            <select class="form-select" id="id" name="id">
+                <option selected>Choose...</option>
+                {% for row in table %}
+                <option value="{{row['id']}}">{{row['id']}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto" style="text-align: center;" id="seen" name="seen" placeholder="seen" type="text">
+        </div>
+            <div class="mb-3">
+                <button class="btn btn-dark" type="submit">Update</button>
+            </div>
+        </form>
+        </div>
+    <div class="dividelete">
+        <form class="seendelete" action="/delete" method="POST">
+            <div class="mb-3">
+            <select class="form-select" id="id" name="id">
+                <option selected>Choose...</option>
+                {% for row in table %}
+                <option value="{{row['id']}}">{{row['id']}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-dark" type="submit">Delete</button>
+            </form>
+    </div>
+</div>
+</section>
 {% endblock %}

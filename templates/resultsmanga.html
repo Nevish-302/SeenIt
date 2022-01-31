@@ -4,13 +4,14 @@
 <section class="cards">
 {% for result in results %}
 <span class="card">
-    <span class="image"><img src = '{{result["image"]}}' style="width: 300px;border-bottom: 3px solid white;"></span>
     <div>
-    <span class="title"><b style="font-family: bangers;font-size: 30px;">{{result["title"]}}</b></span>
+    <span class="title"><b style="font-family: bangers;font-size: 30px;">{{result["name"]}}</b></span>
     <br>
     <span class="description"><i>{{result["description"]}}</i></span>
     <br>
-    <div class="id" style="background-color: black;color:white;"><a href ='https://www.imdb.com/title/{{result["id"]}}'>IMDB official</a></div>
+    <span class="status"><b>Status : {{result["status"]}}</b></span>
+    <br>
+    <div class="id" style="background-color: black;color:white;"><a href ='{{result["url"]}}'>manganato</a></div>
     </div>
 </span>
 {% endfor %}
