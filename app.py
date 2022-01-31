@@ -138,7 +138,7 @@ def register():
             msg.body = 'Your link is {}'.format(link)
             mail.send(msg)
             db.execute("INSERT INTO users(username, hash, tablename, confirmation) VALUES(?, ?, ?, 0);", name, generate_password_hash(password), name)
-            db.execute("CREATE TABLE ?(id INTEGER NOT NULL , name TEXT, seen INTEGER, total INTEGER, type TEXT NOT NULL, source TEXT, time DATETIME, times INTEGER, PRIMARY KEY(id))",name)
+            db.execute("CREATE TABLE ?(id INTEGER NOT NULL , name TEXT, seen INTEGER, total INTEGER, type TEXT NOT NULL, time DATETIME, time_per_episode FLOAT, times INTEGER, PRIMARY KEY(id))",name)
             
             #hello = confirmmail(name)
             #return hello
@@ -165,10 +165,21 @@ def addupdate():
         seen = request.form.get("seen")
         total = request.form.get("total")
         type = request.form.get("type")
+        tpe = request.form.get("tpe")
         time = datetime.now()
-        source = request.form.get("source")
         times = request.form.get("times")
-        db.execute("INSERT INTO ?(name, seen, total, type, source, time, times) VALUES(?, ?, ?, ?, ?, ?, ?)", name, title, seen, total, type, source, time, times)
+        if not tpe:
+            if type == "manga":
+                tpe = 3
+            elif type == "anime":
+                tpe = 24
+            elif type == "television":
+                tpe = 60
+            elif type == "asiandrama":
+                tpe = 60
+            else:
+                tpe = 60
+        db.execute("INSERT INTO ?(name, seen, total, type, time, time_per_episode, times) VALUES(?, ?, ?, ?, ?, ?, ?)", name, title, seen, total, type, time, float(tpe), times)
         return render_template("addupdate.html", table=db.execute("SELECT * FROM ?", name))
 
 @app.route('/seenupdate')
@@ -182,3 +193,32 @@ def search():
     if request.method == 'POST':
         name = request.form.get("name")
         return render_template("results.html", results=lookup(name)) 
+
+@app.route("/change", methods=["GET", "POST"])
+def change():
+    if request.method == "GET":
+        return render_template("change.html")
+    # When the user entered information
+    if request.method == "POST":
+        password = request.form.get("password")
+        confirmation = request.form.get("confirmation")
+        # checking if confirmation is correct or null op password is null
+        if not password or not confirmation or password != confirmation:
+            return apology("Must Provide Password And Correct Confirmation")
+        db.execute("UPDATE users SET hash = ?", generate_password_hash(password))
+    return redirect("/")
+
+@app.route('/update', methods = ["POST"])
+def update():
+    id = request.form.get('id')
+    seen = request.form.get('seen')
+    name = db.execute("SELECT username FROM users WHERE id = ?", session['user_id'])[0]['username']
+    db.execute("UPDATE ? SET seen = ? WHERE id = ?", name, seen, id)
+    return render_template("addupdate.html", table=db.execute("SELECT * FROM ?", name))
+
+@app.route('/delete', methods = ["POST"])
+def delete():
+    id = request.form.get('id')
+    name = db.execute("SELECT username FROM users WHERE id = ?", session['user_id'])[0]['username']
+    db.execute("DELETE FROM ? WHERE id = ?", name, id)
+    return render_template("addupdate.html", table=db.execute("SELECT * FROM ?", name))
