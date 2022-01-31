@@ -35,13 +35,15 @@ def login_required(f):
     return decorated_function
 
 
-def lookup(symbol):
+def lookup(name):
     """Look up quote for symbol."""
 
     # Contact API
     try:
-        api_key = os.environ.get("API_KEY")
-        url = f"https://cloud.iexapis.com/stable/stock/{urllib.parse.quote_plus(symbol)}/quote?token={api_key}"
+        # api_key = os.environ.get("API_KEY")
+        api_key = "k_bqzb9re0"
+        url = f"https://imdb-api.com/en/API/SearchSeries/{api_key}/{name}"
+        # url = f"https://cloud.iexapis.com/stable/stock/{urllib.parse.quote_plus(symbol)}/quote?token={api_key}"
         response = requests.get(url)
         response.raise_for_status()
     except requests.RequestException:
@@ -50,11 +52,11 @@ def lookup(symbol):
     # Parse response
     try:
         quote = response.json()
-        return {
-            "name": quote["companyName"],
-            "price": float(quote["latestPrice"]),
-            "symbol": quote["symbol"]
-        }
+        resultlist = []
+        results = quote["results"]
+        for result in results:
+            resultlist.append(result)
+        return resultlist
     except (KeyError, TypeError, ValueError):
         return None
 
