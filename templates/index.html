@@ -33,6 +33,7 @@
         { 
             Show[i].style.display='';
         }
+        document.getElementById("default").style.display="none";
     }
 </script>
 <div class="btn-group" role="group">
@@ -42,7 +43,15 @@
     <button class="btn btn-outline-dark" type="reset" onclick="show('asiandrama');">AsianDrama</button>
 </div>
 <br><br>
-<table class="table table-dark table-hover">
+<section style="display: flex;justify-content: space-between;">
+<div class="imgcollection">
+<img src="/static/images/index/manga2.png" class="manga" style="display: none;">
+<img src="/static/images/index/default.png" id="default" >
+<img src="/static/images/index/anime.png" class="anime" style="display: none;">
+<img src="/static/images/index/asiandrama.png" class="asiandrama" style="display: none;">
+<img src="/static/images/index/television.png" class="television" style="display: none;">
+</div>
+<table class="table table-dark table-hover" id = "table_main" style="height: fit-content;width: 48%;">
     <div>
     <tr>
         <th>Name</th>
@@ -96,4 +105,5 @@
         {% endif %}
     {% endfor %}
 </table>
+</section>
 {% endblock %}

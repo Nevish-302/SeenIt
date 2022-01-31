@@ -18,6 +18,24 @@ from mail import confirmmail, confirm_email
 # Configure application
 app = Flask(__name__)
 
+app.config['DEBUG'] = True
+app.config['TESTING'] = False
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+# app.config['MAIL_DEBUG'] = True
+app.config['MAIL_USERNAME'] = 'Seenit302@gmail.com'
+app.config['MAIL_PASSWORD'] = 'Purabiart@302'
+app.config['MAIL_DEFAULT_SENDER'] = ('SeenIt.com', 'Seenit302@gmail.com')
+app.config['MAIL_MAX_EMAILS'] = None
+# app.config['MAIL_SUPRESS_SEND'] = False
+app.config['MAIL_ASCII_ATTACHMENTS'] = False
+
+mail = Mail(app)
+s = URLSafeTimedSerializer('SECRET_KEY')
+
+
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
@@ -114,12 +132,17 @@ def register():
         else:
 
             # adding the new user to users table
-            
+            token = s.dumps(name, salt='email-confirm')
+            msg = Message('Confirm_Email', recipients=[name])
+            link = url_for('confirm_email', token=token, external=True)
+            msg.body = 'Your link is {}'.format(link)
+            mail.send(msg)
             db.execute("INSERT INTO users(username, hash, tablename, confirmation) VALUES(?, ?, ?, 0);", name, generate_password_hash(password), name)
-            db.execute("CREATE TABLE ?(name TEXT, seen INTEGER, total INTEGER, type TEXT NOT NULL, source TEXT, time DATETIME, times INTEGER)",name)
+            db.execute("CREATE TABLE ?(id INTEGER NOT NULL , name TEXT, seen INTEGER, total INTEGER, type TEXT NOT NULL, source TEXT, time DATETIME, times INTEGER, PRIMARY KEY(id))",name)
+            
             #hello = confirmmail(name)
             #return hello
-            
+
             return redirect("/")
     # User reached route via GET (as by clicking a link or via redirect)
     else:
@@ -128,8 +151,9 @@ def register():
 
 @app.route('/confirm_email/<token>')
 def confirm_email(token):
-    email = s.loads(token, salt = 'email-confirm', max_age = 200)
-    return 'the token_works'
+    email = s.loads(token, salt = 'email-confirm', max_age = 3600)
+    db.execute("UPDATE users SET confirmation = 1 WHERE username =?", email)
+    return 'Your Email Has been confirmed'
 
 @app.route('/addupdate', methods = ['GET', 'POST'])
 def addupdate():
@@ -148,5 +172,13 @@ def addupdate():
         return render_template("addupdate.html", table=db.execute("SELECT * FROM ?", name))
 
 @app.route('/seenupdate')
-def method_name():
+def seenupdate():
     return render_template("addupdate.html", table=db.execute("SELECT * FROM ?", name))
+
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    if request.method == 'GET':
+        return render_template("search.html")
+    if request.method == 'POST':
+        name = request.form.get("name")
+        return render_template("results.html", results=lookup(name)) 

@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title %} {% endblock %}
+{% block main %}
+<section class="cards">
+{% for result in results %}
+<div class="card">
+    <span class="image"><img src = '{{result["image"]}}' style="width: 300px;border-bottom: 3px solid white;"></span>
+    <div>
+    <span class="title"><b style="font-family: bangers;font-size: 30px;">{{result["title"]}}</b></span>
+    <br>
+    <span class="description"><i>{{result["description"]}}</i></span>
+    <br>
+    <div class="id" style="background-color: black;color:white;"><a href ='https://www.imdb.com/title/{{result["id"]}}'>IMDB official</a></div>
+    </div>
+</div>
+{% endfor %}
+</section>
+{% endblock %}
