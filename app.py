@@ -140,7 +140,7 @@ def register():
             db.execute("INSERT INTO users(username, hash, tablename, confirmation) VALUES(?, ?, ?, 0);", name, generate_password_hash(password), name)
             db.execute("INSERT INTO personalinfo(id, profilepic) VALUES(?, 0);", db.execute("SELECT id FROM users WHERE username = ?", name)[0]['id'])
             db.execute("CREATE TABLE ?(id INTEGER NOT NULL , name TEXT, seen INTEGER, total INTEGER, type TEXT NOT NULL, time DATETIME, time_per_episode FLOAT, times INTEGER, PRIMARY KEY(id))",name)
-            
+            db.execute("INSERT INTO ?(name, type,seen, time_per_episode) VALUES('sample', 'sample', 0, 0);", name)
             #hello = confirmmail(name)
             #return hello
 
