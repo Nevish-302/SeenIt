@@ -1,12 +1,12 @@
 {% extends "layout.html" %}
 {% block title %} {% endblock %}
 {% block main %}
-<section class="cards">
+<section class="grid_">
 {% for result in results %}
-<span class="card">
+<span class="grid_element">
     <span class="image"><img src = '{{result["image"]}}' style="width: 300px;border-bottom: 3px solid white;"></span>
     <div>
-    <span class="title"><b style="font-family: bangers;font-size: 30px;">{{result["title"]}}</b></span>
+    <span class="title"><b style="font-family: oswald;font-size: 30px;">{{result["title"]}}</b></span>
     <br>
     <span class="description"><i>{{result["description"]}}</i></span>
     <br>
@@ -16,7 +16,7 @@
 {% endfor %}
 </section>
 <br><br><br>
-<div class="search">
+<div class="search" style="flex-wrap: nowrap;">
   <div>
   <img src="/static/images/search/tvonly.png">
   <span class="searchtext"><h1>TV SERIES ONLY</h1></span>

@@ -135,7 +135,7 @@ def register():
             token = s.dumps(name, salt='email-confirm')
             msg = Message('Confirm_Email', recipients=[name])
             link = url_for('confirm_email', token=token, external=True)
-            msg.body = 'Your link is {}'.format(link)
+            msg.body = 'Your link is https://haveyouseenit.herokuapp.com{}'.format(link)
             mail.send(msg)
             db.execute("INSERT INTO users(username, hash, tablename, confirmation) VALUES(?, ?, ?, 0);", name, generate_password_hash(password), name)
             db.execute("INSERT INTO personalinfo(id, profilepic) VALUES(?, 0);", db.execute("SELECT id FROM users WHERE username = ?", name)[0]['id'])
