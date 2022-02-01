@@ -5,5 +5,4 @@ Flask-mail
 Flask-APScheduler
 gunicorn
 requests
-email
 python3-pip
