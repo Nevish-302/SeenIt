@@ -6,6 +6,10 @@ import email
 from cs50 import SQL
 from datetime import datetime
 from flask import Flask, flash, redirect, render_template, request, session, url_for
+
+# Configure application
+app = Flask(__name__)
+
 from itsdangerous import URLSafeTimedSerializer 
 from flask_mail import Mail, Message
 from flask_session import Session
@@ -14,8 +18,6 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import apology, login_required, lookup, lookupanime, usd
 from mail import confirmmail, confirm_email
 
-# Configure application
-app = Flask(__name__)
 
 app.config['DEBUG'] = True
 app.config['TESTING'] = False
