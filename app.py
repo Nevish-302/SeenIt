@@ -3,7 +3,6 @@ from crypt import methods
 import os
 import email
 from turtle import title
-
 from cs50 import SQL
 from datetime import datetime
 from flask import Flask, flash, redirect, render_template, request, session, url_for
@@ -164,12 +163,22 @@ def addupdate():
         return render_template("addupdate.html", table=db.execute("SELECT * FROM ?", name))
     if request.method == 'POST':
         title = request.form.get("name")
+        if not title:
+            return apology("Must Provide Title")
         seen = request.form.get("seen")
+        if not seen:
+            seen = 0
         total = request.form.get("total")
+        if not total:
+            total = 0
         type = request.form.get("type")
+        if type == 'Choose...':
+            return apology("Must Provide Type")
         tpe = request.form.get("tpe")
         time = datetime.now()
         times = request.form.get("times")
+        if not times:
+            times = 0
         if not tpe:
             if type == "manga":
                 tpe = 3

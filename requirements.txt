@@ -1,0 +1,9 @@
+cs50
+Flask
+Flask-Session
+Flask-mail
+Flask-APScheduler
+gunicorn
+requests
+email
+python3-pip
