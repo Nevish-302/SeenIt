@@ -163,6 +163,7 @@ body {
 {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 .grid_element
 {

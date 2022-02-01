@@ -304,7 +304,7 @@ def usersearch():
     if request.method == "POST":
         name = request.form.get("username")
         if not name:
-            return apology("Enter Username")
+            return apology("Enter Email Id")
         try:
             id = db.execute("SELECT id FROM users WHERE username = ?", name)[0]['id']
         except:

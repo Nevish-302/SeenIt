@@ -40,8 +40,8 @@ def lookup(name):
 
     # Contact API
     try:
-        # api_key = os.environ.get("API_KEY")
-        api_key = "k_bqzb9re0"
+        api_key = os.getenv("API_KEY_IMDB")
+        
         url = f"https://imdb-api.com/en/API/SearchSeries/{api_key}/{name}"
         # url = f"https://cloud.iexapis.com/stable/stock/{urllib.parse.quote_plus(symbol)}/quote?token={api_key}"
         response = requests.get(url)
@@ -62,11 +62,13 @@ def lookup(name):
 
 def lookupanime(name):
     try:
+        api_key = os.getenv("API_KEY_JIKAN")
+        
         url = "https://jikan1.p.rapidapi.com/search/anime"
         querystring = {"q":name}
         headers = {
                 'x-rapidapi-host': "jikan1.p.rapidapi.com",
-                'x-rapidapi-key': "1b7269acadmsh7b21a1bbe7c535bp150b55jsn03e7ccad58a3"
+                'x-rapidapi-key': api_key
         }
         response = requests.request("GET", url, headers=headers, params=querystring)
     except requests.RequestException:
