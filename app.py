@@ -230,14 +230,19 @@ def change():
 @app.route("/myself")
 def myself():
     name = db.execute("SELECT username FROM users WHERE id = ?", session['user_id'])[0]['username']
-    return render_template("myself.html", personalinfo=db.execute("SELECT * FROM personalinfo WHERE id = ?", session['user_id'])[0], time_type=db.execute("SELECT sum((time_per_episode * seen)/30) AS typesum, type from ? group by type;", name), total_time=db.execute("SELECT sum((time_per_episode * seen)/60) AS TOTALSUM from ?;", name)[0])
+    timee=db.execute("SELECT sum((time_per_episode * seen)) AS typesum from ? group by type ORDER BY typesum DESC LIMIT 1;", name)[0]['typesum']
+    length = float(2.5 ** (len(str(timee)) - 2))
+    if length == 0:
+        length = 1
+    return render_template("myself.html", personalinfo=db.execute("SELECT * FROM personalinfo WHERE id = ?", session['user_id'])[0], time_type=db.execute("SELECT sum((time_per_episode * seen)*times) / ? AS typesum, sum((time_per_episode * seen)*times)/60.0 as types, type, type from ? group by type;", length, name), total_time=db.execute("SELECT sum((time_per_episode * seen * times)/60) AS TOTALSUM from ?;", name)[0])
 
 @app.route('/update', methods = ["POST"])
 def update():
     id = request.form.get('id')
     seen = request.form.get('seen')
+    type = request.form.get('type')
     name = db.execute("SELECT username FROM users WHERE id = ?", session['user_id'])[0]['username']
-    db.execute("UPDATE ? SET seen = ? WHERE id = ?", name, seen, id)
+    db.execute("UPDATE ? SET ? = ? WHERE id = ?", name, type, seen, id)
     return render_template("addupdate.html", table=db.execute("SELECT * FROM ?", name))
 
 @app.route('/delete', methods = ["POST"])
@@ -246,3 +251,11 @@ def delete():
     name = db.execute("SELECT username FROM users WHERE id = ?", session['user_id'])[0]['username']
     db.execute("DELETE FROM ? WHERE id = ?", name, id)
     return render_template("addupdate.html", table=db.execute("SELECT * FROM ?", name))
+
+@app.route('/localsearch', methods = ["POST"])
+def localsearch():
+    q = request.form.get('query')
+    search = f"%{q}%"
+    name = db.execute("SELECT username FROM users WHERE id = ?", session['user_id'])[0]['username']
+    table = db.execute("SELECT * FROM ? WHERE name LIKE ?", name, search)
+    return render_template("index.html", table=table)

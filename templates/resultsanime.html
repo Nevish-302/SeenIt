@@ -6,7 +6,7 @@
 <span class="grid_element">
     <span class="image"><img src = '{{result["image_url"]}}' style="width: 300px;border-bottom: 3px solid white;"></span>
     <div>
-    <span class="title"><b style="font-family: bangers;font-size: 30px;">{{result["title"]}}</b></span>
+    <span class="title"><b style="font-family: oswald;font-size: 30px;">{{result["title"]}}</b></span>
     <br>
     <span class="type"><b>Type : {{result["type"]}}</b></span>
     <br>
@@ -14,7 +14,7 @@
     <br>
     <span class="status"><b>Status : {% if result["airing"] == false %}Completed{%endif%}{% if result["airing"] == true %} Airing {%endif%}</b></span>
     <br>
-    <div class="id" style="background-color: black;color:white;"><a href ='https://myanimelist.net/anime/{{result["mal_id"]}}'>MyAnimeList</a></div>
+    <div class="id" style="background-color: black;color:white;justify-content: center;"><a href ='https://myanimelist.net/anime/{{result["mal_id"]}}'>MyAnimeList</a></div>
     </div>
 </span>
 {% endfor %}

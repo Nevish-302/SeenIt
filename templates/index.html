@@ -36,11 +36,21 @@
         document.getElementById("default").style.display="none";
     }
 </script>
+<div class="top">
 <div class="btn-group" role="group">
     <button class="btn btn-outline-dark" type="reset" onclick="show('manga');">Manga</button>
     <button class="btn btn-outline-dark" type="reset" onclick="show('anime');">Anime</button>
     <button class="btn btn-outline-dark" type="reset" onclick="show('television');">TV Series</button>
     <button class="btn btn-outline-dark" type="reset" onclick="show('asiandrama');">AsianDrama</button>
+</div>
+<div class="localsearch">
+    <form action="/localsearch" method="post" class="searchbox">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control"  style="font-family:Bangers;font-size: 50px;" placeholder="Local Search" name = "query" id = "query">
+            <button class="btn btn-outline-dark" type="submit" style="font-family:Bangers;color: white;font-size: 50px;text-shadow: 5px 5px 5px black;">Search</button>
+          </div>
+        </form>      
+</div>
 </div>
 <br><br>
 <section style="display: flex;justify-content: space-between;">

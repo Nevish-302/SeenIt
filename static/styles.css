@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comforter&family=Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comforter&family=Oswald&family=Shadows+Into+Light&display=swap');
 /* Size for brand */
 nav .navbar-brand
 {
@@ -286,7 +286,41 @@ body {
 }
 .hello
 {
+    margin-top: 1%;
     width: 50%;
     display: inline-flex;
     flex-direction: row;
+}
+.top > div > button
+{
+    font-family: Bangers;
+    color: white;
+    text-shadow: 3px 3px 10px black;    
+    font-size: 50px;
+}
+.top
+{
+    width: 100%;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.top > div
+{
+    margin: auto;
+}
+a:visited
+{
+    color:white;
+}
+a
+{
+    color:white;
+}
+a:hover
+{
+    color: skyblue;
+    font-weight: bold;
+    background-color: rgba(00, 00, 00, .3);
+    border-radius: 5%;
 }
