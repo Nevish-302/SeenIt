@@ -5,7 +5,10 @@
 {% endblock %}
 
 {% block main %}
-    <form action="/change" method="post">
+<div class="changemain">
+    <div class="elmt">
+        <div class="declaration"> CHANGE PASSWORD </div>
+    <form action="/changepass" method="post">
         <div class="mb-3">
             <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="New Password" type="password">
         </div>
@@ -14,4 +17,33 @@
         </div>
         <button class="btn btn-primary" type="submit">Change Password</button>
     </form>
+</div>
+<div class="elmt">
+    <div class="declaration"> CHANGE INFORMATION </div>
+    <form action="/change" method="post" style="display: flex;">
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="data" name="data" placeholder="Info" type="text">
+        </div>
+        <div class="mb-3">
+            <select class="form-select" id="column" name="column">
+                <option selected>Choose...</option>
+                <option value="name">Name</option>
+                <option value="gender">Gender</option>
+                <option value="age">Age</option>
+                <option value="profilepic">Profile Picture</option>
+                <option value="FAV">Fav</option>
+              </select>
+            </div>
+            <div class="mb-3">
+        <button class="btn btn-primary" type="submit">UPDATE</button>
+    </div>
+    </form>
+</div>
+</div>
+    <div class="grid">
+        <div class="declaration2">Profile Pic Options</div>
+        {% for i in range(15) %}
+        <div class="grid_element"><img src="/static/images/myself/{{i}}.png"><div class="id" style ="font-family: 'Shadows Into Light';font-size: 30px;"> <div class="division">Profile Pic Name</div> <div class="division">{{i}}</div></div></div>
+        {% endfor %}
+    </div>
 {% endblock %}

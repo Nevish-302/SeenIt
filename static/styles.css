@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comforter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comforter&family=Shadows+Into+Light&display=swap');
 /* Size for brand */
 nav .navbar-brand
 {
@@ -178,4 +178,115 @@ body {
 .sbs
 {
     padding-top: 10%;
+}
+.home
+{
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+.graphs
+{
+    width: 50%;
+    display: inline-flex;
+    flex-direction: column;
+    margin-top: auto;
+    margin-left: 1%;
+    margin-bottom: auto;
+}
+.personal
+{
+    width: 30%;
+    display: inline-flex;
+    flex-direction: column;
+}
+.info
+{
+    display: flex;
+    background-color: rgba(00, 00, 00, 0.2);
+}
+.field
+{
+    margin: 0.5%;
+    font-size: 40px;
+    width: 50%;
+    color: seashell;
+    background-color: rgba(00, 00, 00, 0.5);
+    border-radius: 3%;
+    font-family: 'Shadows Into Light';
+    justify-content: center;
+}
+.profile
+{
+    width: 90%;
+}
+.division
+{
+    margin: auto;
+    text-align: center;
+    min-width: 10%;
+    color: white;
+}
+.id
+{
+    background-color: rgba(00, 00, 00, 0.5);
+    display: flex;
+    justify-content: space-between;
+}
+.changemain
+{
+    width: 100%;
+    display: inline-flex;
+    margin: auto;
+}
+.elmt >form
+{
+    border-left: 3px solid white;
+    padding-left: 3%;
+    margin-right: 5%;
+}
+.elmt
+{
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    background-color: rgba(00, 00, 00, .3);
+    display: inline-flex;
+    border: 3px solid white;
+    margin-right: 1%;
+    padding: 1%;
+}
+.declaration
+{
+    font-family: Bangers;
+    font-size: 50px;
+    width: 50%;
+    color: white;
+    text-shadow: 3px 3px 3px black;
+    margin-right: 5%;
+}
+.declaration2
+{
+    font-family: Bangers;
+    color: white;
+    text-shadow: 3px 3px 10px black;
+    margin: auto;
+    width: 100%;
+    font-size: 100px;
+}
+.chart
+{
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 5px solid white;
+    background-color: rgba(00, 00, 00, 0.5);
+    margin-bottom: 10px;
+    box-shadow: 5px 5px 5px black;
+}
+.hello
+{
+    width: 50%;
+    display: inline-flex;
+    flex-direction: row;
 }

@@ -138,6 +138,7 @@ def register():
             msg.body = 'Your link is {}'.format(link)
             mail.send(msg)
             db.execute("INSERT INTO users(username, hash, tablename, confirmation) VALUES(?, ?, ?, 0);", name, generate_password_hash(password), name)
+            db.execute("INSERT INTO personalinfo(id, profilepic) VALUES(?, 0);", db.execute("SELECT id FROM users WHERE username = ?", name)[0]['id'])
             db.execute("CREATE TABLE ?(id INTEGER NOT NULL , name TEXT, seen INTEGER, total INTEGER, type TEXT NOT NULL, time DATETIME, time_per_episode FLOAT, times INTEGER, PRIMARY KEY(id))",name)
             
             #hello = confirmmail(name)
@@ -202,8 +203,8 @@ def searchanime():
         name = request.form.get("name")
         return render_template("resultsanime.html", results=lookupanime(name))
 
-@app.route("/change", methods=["GET", "POST"])
-def change():
+@app.route("/changepass", methods=["GET", "POST"])
+def changepass():
     if request.method == "GET":
         return render_template("change.html")
     # When the user entered information
@@ -215,6 +216,21 @@ def change():
             return apology("Must Provide Password And Correct Confirmation")
         db.execute("UPDATE users SET hash = ?", generate_password_hash(password))
     return redirect("/")
+
+@app.route("/change", methods=["GET", "POST"])
+def change():
+    if request.method == "GET":
+        return render_template("change.html", personalinfo=db.execute("SELECT * FROM personalinfo WHERE id = ?", session['user_id'])[0])
+    if request.method == "POST":
+        column = request.form.get("column")
+        data = request.form.get("data")
+        db.execute("UPDATE personalinfo SET ? = ? WHERE id = ?", column, data, session['user_id'])
+        return render_template("change.html", personalinfo=db.execute("SELECT * FROM personalinfo WHERE id = ?", session['user_id'])[0])
+
+@app.route("/myself")
+def myself():
+    name = db.execute("SELECT username FROM users WHERE id = ?", session['user_id'])[0]['username']
+    return render_template("myself.html", personalinfo=db.execute("SELECT * FROM personalinfo WHERE id = ?", session['user_id'])[0], time_type=db.execute("SELECT sum((time_per_episode * seen)/30) AS typesum, type from ? group by type;", name), total_time=db.execute("SELECT sum((time_per_episode * seen)/60) AS TOTALSUM from ?;", name)[0])
 
 @app.route('/update', methods = ["POST"])
 def update():
