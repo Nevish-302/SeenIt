@@ -60,19 +60,23 @@ def lookup(name):
     except (KeyError, TypeError, ValueError):
         return None
 
+
 def lookupanime(name):
+    # Contact API
     try:
         api_key = os.getenv("API_KEY_JIKAN")
         
         url = "https://jikan1.p.rapidapi.com/search/anime"
-        querystring = {"q":name}
+        querystring = {"q": name}
         headers = {
-                'x-rapidapi-host': "jikan1.p.rapidapi.com",
-                'x-rapidapi-key': api_key
+            'x-rapidapi-host': "jikan1.p.rapidapi.com",
+            'x-rapidapi-key': api_key
         }
         response = requests.request("GET", url, headers=headers, params=querystring)
     except requests.RequestException:
         return None
+    
+    # Parse response
     try:
         quote = response.json()
         resultlist = []
@@ -82,6 +86,7 @@ def lookupanime(name):
         return resultlist
     except (KeyError, TypeError, ValueError):
         return None
+
 
 def usd(value):
     """Format value as USD."""

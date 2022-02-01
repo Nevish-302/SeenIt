@@ -1,8 +1,8 @@
+# Importing libraries necessary for methods used in this application
 from asyncio import SendfileNotAvailableError
 from crypt import methods
 import os
 import email
-# from turtle import title
 from cs50 import SQL
 from datetime import datetime
 from flask import Flask, flash, redirect, render_template, request, session, url_for
@@ -17,7 +17,7 @@ from tempfile import mkdtemp
 from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import apology, login_required, lookup, lookupanime, usd
 
-
+# Configuration files for sending confirmaiton mails
 app.config['DEBUG'] = True
 app.config['TESTING'] = False
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
@@ -32,9 +32,9 @@ app.config['MAIL_MAX_EMAILS'] = None
 # app.config['MAIL_SUPRESS_SEND'] = False
 app.config['MAIL_ASCII_ATTACHMENTS'] = False
 
+# Creating an object of Mail type 
 mail = Mail(app)
 s = URLSafeTimedSerializer('SECRET_KEY')
-
 
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
@@ -50,6 +50,7 @@ Session(app)
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///SeenIt.db")
 
+
 @app.after_request
 def after_request(response):
     """Ensure responses aren't cached"""
@@ -57,6 +58,7 @@ def after_request(response):
     response.headers["Expires"] = 0
     response.headers["Pragma"] = "no-cache"
     return response
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -94,6 +96,7 @@ def login():
     else:
         return render_template("login.html")
 
+
 @app.route("/logout")
 def logout():
     """Log user out"""
@@ -104,12 +107,15 @@ def logout():
     # Redirect user to login form
     return redirect("/")
 
+
 @app.route("/")
 @login_required
 def index():
+    # Name is for getting the table name for the data
     # return render_template("index.html", table=db.execute("SELECT * FROM ?", session['user_id']))
     name = db.execute("SELECT username FROM users WHERE id = ?", session['user_id'])[0]['username']
     return render_template("index.html", table=db.execute("SELECT * FROM ?", name))
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -136,16 +142,18 @@ def register():
             msg = Message('Confirm_Email', recipients=[name])
             link = url_for('confirm_email', token=token, external=True)
             msg.body = 'Your link is https://haveyouseenit.herokuapp.com{}'.format(link)
-            try : 
+            try: 
                 mail.send(msg)
-            except :
+            except:
                 return apology("provide a valid Email-ID")
-            db.execute("INSERT INTO users(username, hash, tablename, confirmation) VALUES(?, ?, ?, 0);", name, generate_password_hash(password), name)
-            db.execute("INSERT INTO personalinfo(id, profilepic) VALUES(?, 0);", db.execute("SELECT id FROM users WHERE username = ?", name)[0]['id'])
-            db.execute("CREATE TABLE ?(id INTEGER NOT NULL , name TEXT, seen INTEGER, total INTEGER, type TEXT NOT NULL, time DATETIME, time_per_episode FLOAT, times INTEGER, PRIMARY KEY(id))",name)
+            db.execute("INSERT INTO users(username, hash, tablename, confirmation) VALUES(?, ?, ?, 0);", 
+                       name, generate_password_hash(password), name)
+            db.execute("INSERT INTO personalinfo(id, profilepic) VALUES(?, 0);", 
+                       db.execute("SELECT id FROM users WHERE username = ?", name)[0]['id'])
+            db.execute("CREATE TABLE ?(id INTEGER NOT NULL , name TEXT, seen INTEGER, total INTEGER, type TEXT NOT NULL, time DATETIME, time_per_episode FLOAT, times INTEGER, PRIMARY KEY(id))", name)
             db.execute("INSERT INTO ?(name, type,seen, total, time_per_episode, times) VALUES('sample', 'manga', 0, 0, 0, 0);", name)
-            #hello = confirmmail(name)
-            #return hello
+            # hello = confirmmail(name)
+            # return hello
 
             return redirect("/")
     # User reached route via GET (as by clicking a link or via redirect)
@@ -155,17 +163,20 @@ def register():
 
 @app.route('/confirm_email/<token>')
 def confirm_email(token):
-    email = s.loads(token, salt = 'email-confirm', max_age = 360000)
+    # Email can be extracted through the token sent in Email, max age is 360000 i.e. 100 hours
+    email = s.loads(token, salt='email-confirm', max_age=360000)
     db.execute("UPDATE users SET confirmation = 1 WHERE username =?", email)
     return render_template("confirmemail.html")
 
-@app.route('/addupdate', methods = ['GET', 'POST'])
+
+@app.route('/addupdate', methods=['GET', 'POST'])
 @login_required
 def addupdate():
     name = db.execute("SELECT username FROM users WHERE id = ?", session['user_id'])[0]['username']
     if request.method == 'GET': 
         return render_template("addupdate.html", table=db.execute("SELECT * FROM ?", name))
     if request.method == 'POST':
+        # Getting the variables the needed and handling none value error
         title = request.form.get("name")
         if not title:
             return apology("Must Provide Title")
@@ -181,6 +192,7 @@ def addupdate():
         tpe = request.form.get("tpe")
         time = datetime.now()
         times = request.form.get("times")
+        # Adding Default Times For different types
         if not times:
             times = 0
         if not tpe:
@@ -194,40 +206,51 @@ def addupdate():
                 tpe = 60
             else:
                 tpe = 60
-        db.execute("INSERT INTO ?(name, seen, total, type, time, time_per_episode, times) VALUES(?, ?, ?, ?, ?, ?, ?)", name, title, seen, total, type, time, float(tpe), times)
+        db.execute("INSERT INTO ?(name, seen, total, type, time, time_per_episode, times) VALUES(?, ?, ?, ?, ?, ?, ?)", 
+                   name, title, seen, total, type, time, float(tpe), times)
         return render_template("addupdate.html", table=db.execute("SELECT * FROM ?", name))
+
 
 @app.route('/seenupdate')
 def seenupdate():
     return render_template("addupdate.html", table=db.execute("SELECT * FROM ?", name))
 
+
 @app.route("/search", methods=["GET", "POST"])
 @login_required
 def search():
     if request.method == 'GET':
+        # Can be used to search tv shows from imdb
         return render_template("search.html")
     if request.method == 'POST':
         name = request.form.get("name")
+        # Handling none value exceptions
         if not name:
             return apology("Type Something")
-        results=lookup(name)
+        results = lookup(name)
+        # If nothing gets returned
         if not results:
             return apology("No results")
         return render_template("results.html", results=results) 
+
 
 @app.route("/searchanime", methods=["GET", "POST"])
 @login_required
 def searchanime():
     if request.method == 'GET':
+        # Can be used to search anime only from Anilist api
         return render_template("search.html")
     if request.method == 'POST':
         name = request.form.get("name")
+        # Handling none value exceptions
         if not name:
             return apology("Type Something")
-        results=lookupanime(name)
+        results = lookupanime(name)
+        # If nothing gets returned
         if not results:
             return apology("No results")
         return render_template("resultsanime.html", results=results)
+
 
 @app.route("/changepass", methods=["GET", "POST"])
 @login_required
@@ -244,71 +267,90 @@ def changepass():
         db.execute("UPDATE users SET hash = ?", generate_password_hash(password))
     return redirect("/")
 
+
 @app.route("/change", methods=["GET", "POST"])
 @login_required
 def change():
     if request.method == "GET":
+        # Can be used to add/change personal info about the user
         return render_template("change.html", personalinfo=db.execute("SELECT * FROM personalinfo WHERE id = ?", session['user_id'])[0])
     if request.method == "POST":
+        # Getting required columns and data
         column = request.form.get("column")
         data = request.form.get("data")
-        if column == "Choose..." :
+        if column == "Choose...":
             return apology("Select Column")
         db.execute("UPDATE personalinfo SET ? = ? WHERE id = ?", column, data, session['user_id'])
         return render_template("change.html", personalinfo=db.execute("SELECT * FROM personalinfo WHERE id = ?", session['user_id'])[0])
 
+
 @app.route("/myself")
 @login_required
 def myself():
+    # User Profile
     name = db.execute("SELECT username FROM users WHERE id = ?", session['user_id'])[0]['username']
-    timee=db.execute("SELECT sum((time_per_episode * seen)) AS typesum from ? group by type ORDER BY typesum DESC LIMIT 1;", name)[0]['typesum']
+    timee = db.execute(
+        "SELECT sum((time_per_episode * seen)) AS typesum from ? group by type ORDER BY typesum DESC LIMIT 1;", name)[0]['typesum']
+    # To control chart length
     length = float(2.5 ** (len(str(timee)) - 2))
     if length == 0:
         length = 1
     return render_template("myself.html", personalinfo=db.execute("SELECT * FROM personalinfo WHERE id = ?", session['user_id'])[0], time_type=db.execute("SELECT sum((time_per_episode * seen)*times) / ? AS typesum, sum((time_per_episode * seen)*times)/60.0 as types, type, type from ? group by type;", length, name), total_time=db.execute("SELECT sum((time_per_episode * seen * times)/60) AS TOTALSUM from ?;", name)[0])
 
-@app.route('/update', methods = ["POST"])
+
+@app.route('/update', methods=["POST"])
 @login_required
 def update():
+    # Can used to update existing datasets
     id = request.form.get('id')
     value = request.form.get('seen')
     type = request.form.get('type')
+    # Handling nonevalue exception
     if not id or value == "Choose..." or type == "Choose...":
         return apology("Select Columns And Enter Values")
     name = db.execute("SELECT username FROM users WHERE id = ?", session['user_id'])[0]['username']
     db.execute("UPDATE ? SET ? = ? WHERE id = ?", name, type, value, id)
     return render_template("addupdate.html", table=db.execute("SELECT * FROM ?", name))
 
-@app.route('/delete', methods = ["POST"])
+
+@app.route('/delete', methods=["POST"])
 @login_required
 def delete():
+    # Can used to delete existing datasets
     id = request.form.get('id')
+    # Handling nonevalue exception
     if id == "Choose...":
         return apology("Select ID")
     name = db.execute("SELECT username FROM users WHERE id = ?", session['user_id'])[0]['username']
     db.execute("DELETE FROM ? WHERE id = ?", name, id)
     return render_template("addupdate.html", table=db.execute("SELECT * FROM ?", name))
 
-@app.route('/localsearch', methods = ["POST"])
+
+@app.route('/localsearch', methods=["POST"])
 def localsearch():
+    # Can be used to search among the existing data
     q = request.form.get('query')
     search = f"%{q}%"
     name = db.execute("SELECT username FROM users WHERE id = ?", session['user_id'])[0]['username']
     table = db.execute("SELECT * FROM ? WHERE name LIKE ?", name, search)
     return render_template("index.html", table=table)
 
+
 @app.route('/usersearch', methods=["GET", "POST"])
 def usersearch():
+    # A user can share his list and profile with others using this
     if request.method == "GET":
         return render_template("usrsrch.html")
     if request.method == "POST":
         name = request.form.get("username")
+        # Handling none value errors
         if not name:
             return apology("Enter Email Id")
         try:
             id = db.execute("SELECT id FROM users WHERE username = ?", name)[0]['id']
         except:
             return apology("Enter Correct Email ID")
-        timee=db.execute("SELECT sum((time_per_episode * seen)) AS typesum from ? group by type ORDER BY typesum DESC LIMIT 1;", name)[0]['typesum']
+        timee = db.execute(
+            "SELECT sum((time_per_episode * seen)) AS typesum from ? group by type ORDER BY typesum DESC LIMIT 1;", name)[0]['typesum']
         length = float(2.5 ** (len(str(timee)) - 2))
         return render_template("userresult.html", table=db.execute("SELECT * FROM ?", name), personalinfo=db.execute("SELECT * FROM personalinfo WHERE id = ?", id)[0], time_type=db.execute("SELECT sum((time_per_episode * seen)*times) / ? AS typesum, sum((time_per_episode * seen)*times)/60.0 as types, type, type from ? group by type;", length, name), total_time=db.execute("SELECT sum((time_per_episode * seen * times)/60) AS TOTALSUM from ?;", name)[0])
