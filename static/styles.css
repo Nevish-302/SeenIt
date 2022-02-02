@@ -176,6 +176,7 @@ body {
 .imgcollection > img
 {
     max-height:700px;
+    max-width: 100%;
     margin: auto;
 }
 
@@ -389,6 +390,38 @@ a:hover
     border-radius: 5%;
 }
 
+.socialmedia
+{
+    display: flex;
+    max-width: 100%; 
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.socialmedia > a > img
+{
+    max-height: 40px;
+    max-width: 100%;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.socialmedia >a
+{
+    color: black;
+    padding: 5px;
+    max-width: 100%;
+}
+.socialmedia >a :hover
+{
+    background-color: rgba(255, 255, 255, .3);
+}
+.footer
+{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5%;
+    justify-content: center;
+}
+
 @media screen and (max-width : 768px)
 {
   .declaration
@@ -461,9 +494,14 @@ a:hover
       flex-wrap: wrap;
   }
   .search > div > img
-{
+  {
     float:left;
     max-width: 100%;
     max-height: 300px;
-}  
+   }
+   .table
+   {
+       font-size: small;
+   }  
+
 }
