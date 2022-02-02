@@ -38,22 +38,22 @@
 </script>
 <div class="top">
 <div class="btn-group" role="group">
-    <button class="btn btn-outline-dark" type="reset" onclick="show('manga');">Manga</button>
-    <button class="btn btn-outline-dark" type="reset" onclick="show('anime');">Anime</button>
-    <button class="btn btn-outline-dark" type="reset" onclick="show('television');">TV Series</button>
-    <button class="btn btn-outline-dark" type="reset" onclick="show('asiandrama');">AsianDrama</button>
+    <button class="but btn btn-outline-dark" type="reset" onclick="show('manga');">Manga</button>
+    <button class="but btn btn-outline-dark" type="reset" onclick="show('anime');">Anime</button>
+    <button class="but btn btn-outline-dark" type="reset" onclick="show('television');">TV Series</button>
+    <button class="but btn btn-outline-dark" type="reset" onclick="show('asiandrama');">AsianDrama</button>
 </div>
 <div class="localsearch">
     <form action="/localsearch" method="post" class="searchbox">
         <div class="input-group mb-3">
-            <input type="text" class="form-control"  style="font-family:Bangers;font-size: 50px;" placeholder="Local Search" name = "query" id = "query">
-            <button class="btn btn-outline-dark" type="submit" style="font-family:Bangers;color: white;font-size: 50px;text-shadow: 5px 5px 5px black;">Search</button>
+            <input type="text" class="localsearch form-control" autocomplete="off"  placeholder="Local Search" name = "query" id = "query">
+            <button class="localsearch btn btn-outline-dark" type="submit" style="color: white;text-shadow: 5px 5px 5px black;">Search</button>
           </div>
         </form>      
 </div>
 </div>
 <br><br>
-<section style="display: flex;justify-content: space-between;flex-wrap: wrap;">
+<section style="display: flex;flex-wrap: wrap;justify-content: space-between;">
 <div class="imgcollection">
 <img src="/static/images/index/manga2.png" class="manga" style="display: none;">
 <img src="/static/images/index/default.png" id="default" >
@@ -123,20 +123,21 @@
         <div class="chart"><div class="declaration" style="margin-left:10px;width: 100%;display: flex;justify-content: space-between;"><div>Total Time Spent </div><div> {{"%.0f"|format(total_time['TOTALSUM'] // 24)}} Days {{"%.2f"|format(total_time['TOTALSUM'] % 24)}} Hours</div></div></div>
         <div class="chart" style="justify-content: space-between;">
         <div class = "hello" style="display: inline;width: 50%;">
+            <div class="div">
             {% for row in time_type %}
-        <div class="declaration">
+        <div class="declaration" style="font-size: 150%;">
         {{row['type']}}
         </div>
             {% endfor %}
         </div>
+        <div class="declaration" style="font-size: 100%;">Top To Bottom </div>
+        <div class="declaration" style="font-size: 100%;">Left To Right </div>
+    </div>
+        <br>
         <table class=" charts-css column show-labels" style="width: 30%;">
             <tr>
-                <th scope ="row" style="max-width: 60px;">AN</th>
-                <th scope ="row" style="margin-left:60px;max-width: 60px;">ASD</th>
-                <th scope ="row" style="margin-left:120px;max-width: 60px;">M</th>
-                <th scope ="row" style="margin-left:180px;max-width: 60px;">TV</th>
                 {% for row in time_type %}
-                <td style="max-width: 60px;height:{{row['typesum']}}px;">
+                <td style="max-width: 20%;height:{{row['typesum']}}px;">
                 </td>
                 {% endfor %}
               </tr>
@@ -159,6 +160,7 @@
     </div>
 </div>
 </section>
+
 
 
 {% endblock %}
