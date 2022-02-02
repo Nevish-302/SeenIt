@@ -14,47 +14,49 @@
     {
     document.getElementById("register").style.display = "None";
     document.getElementById("login").style.display = "flex";
-    }
+    } 
 </script>
-<section class="main">
-<span class="forms">
-        <form action="/login" method="post" class = "login_form" id = "login">
-        <div class="mb-3">
-            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Email Id" type="text">
-        </div>
-        <div class="mb-3">
-            <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
-        </div>
-        <button class="btn btn-dark" type="submit">Log In</button>
-        <button class="btn btn-outline-dark" type="reset" onclick="register();">Register Instead</button>
-    </form>
-    <form action="/register" method="post" class = "login_form" id = "register" style="display: None;">
-        <div class="mb-3">
-            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Email Id" type="text">
-        </div>
-        <div class="mb-3">
-            <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
-        </div>
-        <div class="mb-3">
-            <input class="form-control mx-auto w-auto" id="password" name="confirmation" placeholder="Confirmation" type="password">
-        </div>
-        <div class="btn-group" role="group">
-        <button class="btn btn-outline-dark" type="submit">Register</button>
-        <button class="btn btn-outline-dark" type="reset" onclick="login();">Login Instead</button>
-    </div> 
-    </form>
-</span>
+    <div class="loginimg">
         <span class="posters">
             <img src="/static/images/login/animec.jpg">
         </span>
         <span class="posters">
             <img src="/static/images/login/asian-dramac.jpg">
         </span>
-        <span class="posters">
+    <div class="posters">
+        <form action="/login" method="post" class = "login_form" id = "login">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="l form-control mx-auto w-auto" id="username" name="username" placeholder="Email Id" type="text" style="font-family: Oswald;">
+        </div>
+        <div class="mb-3">
+            <input class="l form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password" style="font-family: Oswald;">
+        </div>
+        <button class="l btn btn-dark" type="submit">Log In</button>
+        <button class="l btn btn-outline-dark" type="reset" onclick="register();">Register Instead</button>
+    </form>
+</div>
+    <div class="posters">
+    <form action="/register" method="post" class = "login_form" id = "register" style="display: None;">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="l form-control mx-auto w-auto" id="username" name="username" placeholder="Email Id" type="text" style="font-family: Oswald;">>
+        </div>
+        <div class="mb-3">
+            <input class="l form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password" style="font-family: Oswald;">>
+        </div>
+        <div class="mb-3">
+            <input class="l form-control mx-auto w-auto" id="password" name="confirmation" placeholder="Confirmation" type="password" style="font-family: Oswald;">>
+        </div>
+        <div class="btn-group" role="group">
+        <button class="l btn btn-outline-dark" type="submit">Register</button>
+        <button class="l btn btn-outline-dark" type="reset" onclick="login();">Login Instead</button>
+    </div> 
+    </form>
+</div>
+    <span class="posters">
             <img src="/static/images/login/mangac.jpg">
         </span>
         <span class="posters">
             <img src="/static/images/login/tv-seriesc.jpg">
         </span>
-    </section>
+    </div>
 {% endblock %}

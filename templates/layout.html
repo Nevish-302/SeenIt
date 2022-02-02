@@ -38,13 +38,13 @@
                     {% if session["user_id"] %}
                         <ul class="navbar-nav me-auto mt-2">
                             <li class="nav-item"><a class="nav-link" href="/">Index</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/addupdate">Add / Update</a></li>
+                            <li class="nav-item" style="min-width: fit-content;"><a class="nav-link" href="/addupdate">Add / Update</a></li>
                             <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
                             <li class="nav-item"><a class="nav-link" href="/myself">ME</a></li>
                         </ul>
-                        <ul class="navbar-nav ms-auto mt-2">
+                        <ul class="navbar-nav ms-auto mt-2" style="max-width:fit-content;justify-content: right;">
                             <li class="nav-item"><a class="nav-link" href="/usersearch">User Search</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/change">Settings</a></li>
+                            <li class="nav-item"  style="width: 10%;"><a href="/change" style="align-items: center;padding: 15%;"><img src="/static/images/layout/settings.png"  style="margin: auto;width: 60%;" alt = "Settings"></a></li>
                             <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
                         </ul>
                     {% else %}

@@ -1,7 +1,37 @@
 {% extends "layout.html" %}
 {% block title %} Add/Update {% endblock %}
 {% block main %}
-<form action="/addupdate" method="post" class="add">
+<div class="declaration2">Modify Data</div>
+<section class="mainaud">
+    <div class="section">
+        <table class=" table table-dark table-hover">
+            <div>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Progress</th>
+                <th>Type</th>
+                <th>TEP (Minutes)</th>
+                <th>When</th>
+                <th>Times</th>
+            </tr>
+        </div>
+            {% for row in table %}
+                <tr>
+                    <td>{{row['id']}}</td>
+                    <td>{{row['name']}}</td>
+                    <td>{{row['seen']}}/{{row['total']}}</td>
+                    <td>{{row['type']}}</td>
+                    <td>{{row['time_per_episode']}}</td>
+                    <td>{{row['time']}}</td>
+                    <td>{{row['times']}}</td>
+                </tr>
+            {% endfor %}
+        </table>        
+    </div>
+    <div class="section">
+        <div class="element">
+    <form action="/addupdate" method="post" class="add">
     <div class="mb-3">
         <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="name" name="name" placeholder="Name" type="text">
     </div>
@@ -11,7 +41,7 @@
     <div class="mb-3">
         <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="total" name="total" placeholder="Total" type="text">
     </div>
-      <div class="input-group mb-3" style="width: 10%;">
+      <div class="input-group mb-3" style="width: fit-content;">
         <select class="form-select" id="type" name="type">
           <option selected>Choose...</option>
           <option value="manga">Manga</option>
@@ -30,34 +60,12 @@
         <button class="btn btn-dark" type="submit">Add</button>
     </div>
 </form>
-<section class="updatedelete">
-<table class="addupdatetable table table-dark table-hover">
-    <div>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Progress</th>
-        <th>Type</th>
-        <th>TEP (Minutes)</th>
-        <th>When</th>
-        <th>Times</th>
-    </tr>
 </div>
-    {% for row in table %}
-        <tr>
-            <td>{{row['id']}}</td>
-            <td>{{row['name']}}</td>
-            <td>{{row['seen']}}/{{row['total']}}</td>
-            <td>{{row['type']}}</td>
-            <td>{{row['time_per_episode']}}</td>
-            <td>{{row['time']}}</td>
-            <td>{{row['times']}}</td>
-        </tr>
-    {% endfor %}
-</table>
-<div class="divdup">
-    <div class="diviup">
-        <form class="seenupdate" action="/update" method="POST">
+<div class="element">
+<!-- <section class="updatedelete"> -->
+<!-- <div class="divdup">
+    <div class="diviup"> -->
+        <form class="add" action="/update" method="POST">
             <div class="mb-3">
             <select class="form-select" id="id" name="id">
                 <option selected>Choose...</option>
@@ -82,8 +90,9 @@
             </div>
         </form>
         </div>
-    <div class="dividelete">
-        <form class="seendelete" action="/delete" method="POST">
+        <div class="element">
+    <!-- <div class="dividelete"> -->
+        <form class="add" action="/delete" method="POST">
             <div class="mb-3">
             <select class="form-select" id="id" name="id">
                 <option selected>Choose...</option>
@@ -94,8 +103,23 @@
             </div>
             <div class="mb-3">
                 <button class="btn btn-dark" type="submit">Delete</button>
+            </div>
             </form>
     </div>
 </div>
+<!--</section> 
+</div> -->
 </section>
+<div class="search" style="flex-wrap: nowrap;">
+    <div>
+    <img src="/static/images/search/tvonly.png">
+  </div>
+  <div>
+    <img src="/static/images/search/between.png" >
+    </div>
+    <div>
+    <img src="/static/images/search/power.png">
+    </div>
+  </div>
+  
 {% endblock %}

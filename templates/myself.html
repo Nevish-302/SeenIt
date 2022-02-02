@@ -5,10 +5,11 @@
 {% endblock %}
 
 {% block main %}
-<section class="home">
+<section class="mainaud" style="margin: 0;">
+    <div class="section" style="min-width:55%;max-width: 100%;margin: auto;">
     <div class="graphs">
         <div class="chart"><div class="declaration" style="margin-left:10px;width: 100%;display: flex;justify-content: space-between;"><div>Total Time Spent </div><div> {{"%.0f"|format(total_time['TOTALSUM'] // 24)}} Days {{"%.2f"|format(total_time['TOTALSUM'] % 24)}} Hours</div></div></div>
-        <div class="chart">
+        <div class="chart" style="justify-content: space-between;">
         <div class = "hello" style="display: inline;width: 50%;">
             {% for row in time_type %}
         <div class="declaration">
@@ -16,7 +17,7 @@
         </div>
             {% endfor %}
         </div>
-        <table class="hello charts-css column show-labels" >
+        <table class=" charts-css column show-labels" style="width: 30%;">
             <tr>
                 <th scope ="row" style="max-width: 60px;">AN</th>
                 <th scope ="row" style="margin-left:60px;max-width: 60px;">ASD</th>
@@ -35,13 +36,16 @@
         <div class="chart"><div class="declaration" style="margin-left:10px;width: 100%;display: flex;justify-content: space-between;"><div>{{row['type']}}</div> <div>{{"%.0f"|format(row['types'] // 24)}} Days {{"%.2f"|format(row['types'] % 24)}} Hours </div></div></div>
         {% endfor %}
     </div>
+</div>
+<div class="section" style="margin: 0;min-width: 30%;max-width: fit-content;">
     <div class="personal">
-        <div class="info" style="background-color: rgba(00, 00, 00, 0);"><div style="width: 100%;"><img src="/static/images/myself/{{personalinfo['profilepic']}}.png" alt="" class="profile"></div></div>
+        <div class="info" style="background-color: rgba(00, 00, 00, 0);justify-content: center;"><div style="width: 80%;"><img src="/static/images/myself/{{personalinfo['profilepic']}}.png" alt="" class="profile"></div></div>
         <div class="info"><div class="field">Name</div><div class="field">{{personalinfo['name']}}</div></div>
         <div class="info"><div class="field">Gender</div><div class="field">{{personalinfo['gender']}}</div></div>
         <div class="info"><div class="field">Age</div><div class="field">{{personalinfo['age']}}</div></div>
         <div class="info"><div class="field">Favourite</div><div class="field">{{personalinfo['FAV']}}</div></div>
     </div>
+</div>
 </section>
 
 {% endblock %}

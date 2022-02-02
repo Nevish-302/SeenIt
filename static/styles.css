@@ -25,8 +25,7 @@ nav .navbar-brand .green
 {
     display: flex;
     flex-direction: column;
-    float: right;
-    width: 20%;
+    width: 100%;
     margin-top: 10%;
     height: 100%;
 }
@@ -39,6 +38,8 @@ nav .navbar-brand .green
 }
 body {
     overflow-x: hidden;
+    font-family: Oswald;
+    font-size: 20px;
     background:url(/static/images/backgrounds/b1.png);
     background-repeat:no-repeat;
     background-attachment:fixed;
@@ -51,7 +52,8 @@ body {
 }
 .posters{
     margin-left: 0px;
-    
+    margin-right: 0px;
+    max-width: 20%;
 }
 .posters > img
 {
@@ -59,7 +61,25 @@ body {
     margin: 0;
     border: 2px solid white;
     border-radius: 10px;
-    max-width: 19.7%;
+    max-width: 100%;
+}
+.loginimg
+{
+    display: flex;
+    max-width: 100%;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+.posters > form
+{
+    font-family: bangers;
+    width: 100%;
+    margin: auto;
+    margin-top: 60%;
+}
+.l{
+    font-size: 150%;
+    min-width: fit-content;
 }
 .sec_form
 {
@@ -69,17 +89,45 @@ body {
 }
 .forms
 {
-    max-width: 20%;
+    width: 100%;
     flex-direction: column;
 }
 .add{
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: 20%;
+    font-family: Oswald;
     flex-direction: row;
-    margin-left: 20%;
 }
 .main
 {
-    dispjlay: flex;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.mainaud
+{
+    margin:auto;
+    min-width: 100%;
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.section
+{
+    margin:auto;
+    min-width:min-content;
+    max-width: 48%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.element
+{    
+    padding: 3%;
+    background-color: rgba(00, 00, 200, .3);
 }
 .card
 {
@@ -91,10 +139,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content:space-around;
-}
-.title
-{
-    
 }
 .cards
 {
@@ -109,6 +153,7 @@ body {
 .search > div > img
 {
     float:left;
+    max-width: 100%;
     max-height: 600px;
 }
 .search > div 
@@ -124,7 +169,7 @@ body {
 {
     max-width: 100%;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: space-between;
     
 }
@@ -133,10 +178,7 @@ body {
     max-height:700px;
     margin: auto;
 }
-.addupdatetable
-{
-    width: 48%;
-}
+
 .updatedelete
 {
     display: flex;
@@ -192,16 +234,14 @@ body {
 }
 .graphs
 {
-    width: 50%;
     display: inline-flex;
     flex-direction: column;
     margin-top: auto;
     margin-left: 1%;
-    margin-bottom: auto;
+    margin-bottom: 4%;
 }
 .personal
 {
-    width: 30%;
     display: inline-flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -286,39 +326,53 @@ body {
 .chart
 {
     display: inline-flex;
+    padding: 5px;
     flex-direction: row;
     min-width:fit-content;
     justify-content: space-between;
     border: 5px solid white;
     background-color: rgba(00, 00, 00, 0.5);
-    margin-bottom: 10px;
+    margin-bottom: 0.8%;
     box-shadow: 5px 5px 5px black;
 }
 .hello
 {
     margin-top: 1%;
+    padding-bottom: 2%;
     width: 50%;
     display: inline-flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 .top > div > button
 {
     font-family: Bangers;
     color: white;
     text-shadow: 3px 3px 10px black;    
-    font-size: 50px;
+    font-size: 300%;
 }
 .top
 {
     width: 100%;
     display: inline-flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
 }
 .top > div
 {
     margin: auto;
+    margin-bottom: 10px;
 }
+.localsearch
+{
+    font-family:Bangers;
+    font-size: 170%;
+}
+.lsearch
+  {
+      font-size: 350%;
+  }
 a:visited
 {
     color:white;
@@ -333,4 +387,83 @@ a:hover
     font-weight: bold;
     background-color: rgba(00, 00, 00, .3);
     border-radius: 5%;
+}
+
+@media screen and (max-width : 768px)
+{
+  .declaration
+  {
+    font-size: 200%;
+  }
+  .declaration2
+  {
+    font-size: 350%;
+  }
+  .top > div > button
+  {
+      font-size: 200%;
+  }
+  .localsearch
+  {
+      font-size: 150%;
+  }
+
+  .search > div > img
+{
+    float:left;
+    max-width: 100%;
+    max-height: 200px;
+}
+.search
+{
+    flex-wrap: nowrap;
+}
+.posters
+{
+    max-width: 100%;
+}
+.posters > img {
+    display: none;
+}
+.loginimg
+{
+    display: flex;
+    max-width: 100%;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+}
+
+@media screen and (max-width : 450px)
+{
+  .declaration
+  {
+    font-size: 100%;
+  }
+  .declaration2
+  {
+    font-size: 250%;
+  }
+  .top > div > button
+  {
+      font-size: 100%;
+  }
+  .localsearch
+  {
+      font-size: 120%;
+  }
+  .lsearch
+  {
+      font-size: 150%;
+  }
+  .search
+  {
+      flex-wrap: wrap;
+  }
+  .search > div > img
+{
+    float:left;
+    max-width: 100%;
+    max-height: 300px;
+}  
 }
