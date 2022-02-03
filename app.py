@@ -155,7 +155,16 @@ def register():
             # hello = confirmmail(name)
             # return hello
 
+            # Query database for username
+            rows = db.execute("SELECT * FROM users WHERE username = ?", name)
+
+            # Remember which user has logged in
+            session["user_id"] = rows[0]["id"]
+            session['user_name'] = rows[0]["username"]
+
+            # Redirect user to home page
             return redirect("/")
+    
     # User reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("login.html")
