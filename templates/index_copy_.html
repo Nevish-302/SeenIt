@@ -53,7 +53,7 @@
 </div>
 </div>
 <br><br>
-<section style="display: flex;flex-wrap: wrap;justify-content: space-between;">
+<section class="index" style="display: flex;flex-wrap: nowrap;justify-content: space-between;">
 <div class="imgcollection">
 <img src="/static/images/index/manga2.png" class="manga" style="display: none;">
 <img src="/static/images/index/default.png" id="default" >
@@ -61,67 +61,54 @@
 <img src="/static/images/index/asiandrama.png" class="asiandrama" style="display: none;">
 <img src="/static/images/index/television.png" class="television" style="display: none;">
 </div>
-<div class="table-responsive-md" style="margin-left: auto;margin-right: auto;">
-    <table class="table table-striped table-hover" id = "table_main" style="height: fit-content;background-color: rgba(255, 255, 255, 0.5);font-size: 100%;">
-        <div>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Progress</th>
-            <th>Type</th>
-            <th>TEP (Minutes)</th>
-            <th>When</th>
-            <th>Repetitions</th>
-        </tr>
-    </div>
-        {% for row in table %}
-        {% if row['type'] == 'manga' %}
-            <tr class="manga">
-                <td>{{row['id']}}</td>
-                <td>{{row['name']}}</td>
-                <td>{{row['seen']}}/{{row['total']}}</td>
-                <td>{{row['type']}}</td>
-                <td>{{row['time_per_episode']}}</td>
-                <td>{{row['time']}}</td>
-                <td>{{row['times']}}</td>
-            </tr>
+
+<div class="_cards grid_">
+    {% for row in table %}
+    {% if row['type'] == 'manga' %}
+        <div class="manga _card">
+            <div>ID- {{row['id']}}</div>
+            <div>{{row['name']}}</div>
+            <div>{{row['seen']}}/{{row['total']}}</div>
+            <div>{{row['type']}}</div>
+            <div>{{row['time_per_episode']}} minutes</div>
+            <div>{{row['time']}}</div>
+            <div>{{row['times']}} Time(s)</div>
+        </div>
+    {% endif %}
+        {% if row['type'] == 'anime' %}
+        <div class="anime _card">
+            <div>ID- {{row['id']}}</div>
+            <div>{{row['name']}}</div>
+            <div>{{row['seen']}}/{{row['total']}}</div>
+            <div>{{row['type']}}</div>
+            <div>{{row['time_per_episode']}} minutes</div>
+            <div>{{row['time']}}</div>
+            <div>{{row['times']}} Time(s)</div>
+        </div>
         {% endif %}
-            {% if row['type'] == 'anime' %}
-            <tr class="anime">
-                <td>{{row['id']}}</td>
-                <td>{{row['name']}}</td>
-                <td>{{row['seen']}}/{{row['total']}}</td>
-                <td>{{row['type']}}</td>
-                <td>{{row['time_per_episode']}}</td>
-                <td>{{row['time']}}</td>
-                <td>{{row['times']}}</td>
-            </tr>
-            {% endif %}
-            {% if row['type'] == 'television' %}
-            <tr class = 'television'>
-                <td>{{row['id']}}</td>
-                <td>{{row['name']}}</td>
-                <td>{{row['seen']}}/{{row['total']}}</td>
-                <td>{{row['type']}}</td>
-                <td>{{row['time_per_episode']}}</td>
-                <td>{{row['time']}}</td>
-                <td>{{row['times']}}</td>
-            </tr>
-            {% endif %}
-            {% if row['type'] == 'asiandrama' %}
-            <tr class='asiandrama'>
-                <td>{{row['id']}}</td>
-                <td>{{row['name']}}</td>
-                <td>{{row['seen']}}/{{row['total']}}</td>
-                <td>{{row['type']}}</td>
-                <td>{{row['time_per_episode']}}</td>
-                <td>{{row['time']}}</td>
-                <td>{{row['times']}}</td>
-            </tr>
-            {% endif %}
-        {% endfor %}
-        <caption style="caption-side:bottom;">You Can Scroll Sidways</caption>
-    </table>
-    </div>
+        {% if row['type'] == 'television' %}
+        <div class="television _card">
+            <div>ID- {{row['id']}}</div>
+            <div>{{row['name']}}</div>
+            <div>{{row['seen']}}/{{row['total']}}</div>
+            <div>{{row['type']}}</div>
+            <div>{{row['time_per_episode']}} minutes</div>
+            <div>{{row['time']}}</div>
+            <div>{{row['times']}} Time(s)</div>
+        </div>
+        {% endif %}
+        {% if row['type'] == 'asiandrama' %}
+        <div class="asiandrama _card">
+            <div>ID- {{row['id']}}</div>
+            <div>{{row['name']}}</div>
+            <div>{{row['seen']}}/{{row['total']}}</div>
+            <div>{{row['type']}}</div>
+            <div>{{row['time_per_episode']}} minutes</div>
+            <div>{{row['time']}}</div>
+            <div>{{row['times']}} Time(s)</div>
+        </div>
+        {% endif %}
+    {% endfor %}
+</div>
 </section>
 {% endblock %}
