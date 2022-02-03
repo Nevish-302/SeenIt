@@ -53,12 +53,17 @@ body {
 .posters{
     margin-left: 0px;
     margin-right: 0px;
-    max-width: 20%;
+    max-width: 19.5%;
+}
+.posters > form
+{
+    font-size: 1.3vw;
 }
 .posters > img
 {
     padding: 0;
     margin: 0;
+    height: 100%;
     border: 2px solid white;
     border-radius: 10px;
     max-width: 100%;
@@ -96,7 +101,7 @@ body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    min-height: 20%;
+    min-height: 100%;
     font-family: Oswald;
     flex-direction: row;
 }
@@ -112,22 +117,29 @@ body {
     min-width: 100%;
     margin-top: 5%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
 }
 .section
 {
-    margin:auto;
+    margin:1%;
     min-width:min-content;
-    max-width: 48%;
+    max-width: 100%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
 }
 .element
 {    
+    padding: 1%;
+    background-color: rgba(255, 255, 255, .3);
+    margin-bottom: 0.5%;
+    margin-top: 0.5%;
+}
+.element > form
+{
     padding: 3%;
-    background-color: rgba(00, 00, 200, .3);
+    background-color: rgba(255, 255, 255, .3);
 }
 .card
 {
@@ -372,7 +384,8 @@ body {
 }
 .lsearch
   {
-      font-size: 350%;
+      font-size: 3vw;
+      min-width: fit-content;
   }
 a:visited
 {
@@ -386,7 +399,6 @@ a:hover
 {
     color: skyblue;
     font-weight: bold;
-    background-color: rgba(00, 00, 00, .3);
     border-radius: 5%;
 }
 
@@ -395,12 +407,12 @@ a:hover
     display: flex;
     max-width: 100%; 
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
 }
 .socialmedia > a > img
 {
     max-height: 40px;
-    max-width: 100%;
+    max-width: fit-content;
     margin-right: 5px;
     margin-left: 5px;
 }
@@ -417,11 +429,17 @@ a:hover
 .footer
 {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
-    margin: 5%;
+    margin: auto;
+    width: 100%;
     justify-content: center;
 }
-
+.foot
+{
+    display: flex;
+    justify-content: center;
+}
 @media screen and (max-width : 768px)
 {
   .declaration
@@ -453,7 +471,12 @@ a:hover
 }
 .posters
 {
-    max-width: 100%;
+    width: 100%;
+    justify-content: center;
+}
+.posters > form
+{
+    font-size: 3vw;
 }
 .posters > img {
     display: none;
@@ -464,6 +487,24 @@ a:hover
     max-width: 100%;
     justify-content: space-between;
     flex-wrap: nowrap;
+}
+.socialmedia
+{
+    max-width: 100%;
+    margin: auto;
+    flex-direction: column;
+}
+.footer
+{
+    flex-direction: column;
+}
+.foot
+{
+    margin: auto;
+}
+.foot > div
+{
+    margin: auto;
 }
 }
 
@@ -504,4 +545,11 @@ a:hover
        max-width: 100%;
    }  
 
+}
+@media screen and (min-width : 800px)
+{
+    .mainaud
+    {
+        flex-wrap: nowrap;
+    }
 }
