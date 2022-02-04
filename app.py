@@ -298,13 +298,7 @@ def change():
 def myself():
     # User Profile
     name = db.execute("SELECT username FROM users WHERE id = ?", session['user_id'])[0]['username']
-    timee = db.execute(
-        "SELECT sum((time_per_episode * seen)) AS typesum from ? group by type ORDER BY typesum DESC LIMIT 1;", name)[0]['typesum']
-    # To control chart length
-    length = float(2.5 ** (len(str(timee)) - 2))
-    if length == 0:
-        length = 1
-    return render_template("myself.html", personalinfo=db.execute("SELECT * FROM personalinfo WHERE id = ?", session['user_id'])[0], time_type=db.execute("SELECT sum((time_per_episode * seen)*times) / ? AS typesum, sum((time_per_episode * seen)*times)/60.0 as types, type, type from ? group by type;", length, name), total_time=db.execute("SELECT sum((time_per_episode * seen * times)/60) AS TOTALSUM from ?;", name)[0])
+    return render_template("myself.html", personalinfo=db.execute("SELECT * FROM personalinfo WHERE id = ?", session['user_id'])[0], time_type=db.execute("SELECT sum((time_per_episode * seen)*times) AS typesum, sum((time_per_episode * seen)*times)/60.0 as types, type from ? group by type;", name), total_time=db.execute("SELECT sum((time_per_episode * seen * times)/60) AS TOTALSUM from ?;", name)[0])
 
 
 @app.route('/update', methods=["POST"])

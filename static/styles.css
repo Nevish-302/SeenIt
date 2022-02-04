@@ -253,6 +253,10 @@ body {
     margin-left: 1%;
     margin-bottom: 4%;
 }
+.indextab
+{
+    flex-wrap: nowrap;
+}
 .personal
 {
     display: inline-flex;
@@ -275,6 +279,48 @@ body {
     font-family: 'Shadows Into Light';
     justify-content: center;
 }
+.dropbtn {
+    background-color: #000000;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropdown {
+
+    display: none;
+  }
+  
+  .dropdown-content {
+    display: none;
+    background-color: grey;
+    min-width: fit-content;
+    box-shadow: 0px 8px 16px 0px rgba(100,100,100,100.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content > a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: flex;
+  }
+  .dropdown-content > a > img{
+    max-height: 40px;
+    max-width: fit-content;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+  .dropdown-content a:hover 
+  {
+      background-color: #f1f1f1;
+    }
+  
+  .dropdown:hover > .dropbtn {
+    background-color: #c0c0c0;
+  }
 .profile
 {
     width: 90%;
@@ -442,6 +488,19 @@ a:hover
 }
 @media screen and (max-width : 768px)
 {
+    .socialmedia
+    {
+        display: none;
+    }
+    .dropdown
+    {
+        display: flex;
+        flex-direction: column;
+    }
+    .indextab
+    {
+        flex-wrap: wrap;
+    }
   .declaration
   {
     font-size: 200%;

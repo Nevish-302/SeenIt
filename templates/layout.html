@@ -23,7 +23,25 @@
         <link href="/static/styles.css" rel="stylesheet">
 
         <title>SeenIt{% block title %}{% endblock %}</title>
-
+        <script>
+            function drop()
+            {
+            var perinfo = document.getElementsByClassName('dropdown-content');
+            var disp = perinfo[0].style.display;
+            if (disp == 'block')
+            {
+                disp = 'none';
+            }
+            else
+            {
+                disp = 'block';
+            }
+            for(var i=0; i<perinfo.length; i++) 
+            { 
+                perinfo[i].style.display=disp;
+            }
+            }
+        </script>
     </head>
 
     <body>
@@ -98,8 +116,33 @@
                 nevish302
             </a>
         </div>
-        </footer>
-
+        <div class="dropdown">
+            <button class="dropbtn" onclick="drop();" style="font-size: 60%;"><div style="font-size: 200%;font-family: bangers;color:white; text-shadow: 1px 1px 1px black;">
+                | From nevish302 |
+            </div>Click For Creator's Info</button>
+            <div class="dropdown-content" style="color: black;">
+             <a href="">
+                <img src="/static/images/socialmedia/0.png" alt="">
+                shiven302@gmail.com
+            </a>
+            <a href="https://github.com/Nevish-302">
+                <img src="/static/images/socialmedia/1.png" alt="">
+                Nevish-302
+            </a>
+            <a href="https://www.linkedin.com/in/shiven-upadhyay-9834bb100/">
+                <img src="/static/images/socialmedia/2.png" alt="">
+                Linkedin
+            </a>
+            <a href="https://www.instagram.com/nevish_302/">
+                <img src="/static/images/socialmedia/3.png" alt="">
+                nevish_302
+            </a>
+            <a href="https://www.facebook.com/nevish302/">
+                <img src="/static/images/socialmedia/4.png" alt="">
+                nevish302
+            </a></div>
+          </div>
+        </footer>          
     </body>
 
 </html>

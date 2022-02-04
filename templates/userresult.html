@@ -125,16 +125,46 @@
     </div>
 </section>
 <hr>
+<meta id="my_playlist_data" data-playlist="{{ time_type }}">
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script>
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+
+var data = google.visualization.arrayToDataTable([
+  ['Type', 'Hours'],
+  ['Manga',Number(document.getElementById("manga").innerHTML)],
+  ['Anime',Number(document.getElementById("anime").innerHTML)],
+  ['Asian Drama',Number(document.getElementById("asiandrama").innerHTML)],
+  ['TV Series',Number(document.getElementById("television").innerHTML)],
+]);
+
+var options = {
+  title:'Type-Wise Statistics',
+  fontName:'Oswald'
+};
+
+var chart = new google.visualization.BarChart(document.getElementById('myChart'));
+  chart.draw(data, options);
+}
+</script>
+
 <section class="mainaud" style="margin: 0;">
     <div class="section" style="min-width:55%;max-width: 100%;margin: auto;">
-    <div class="graphs">
+    <div class="graphs">    
         <div class="chart"><div class="declaration" style="margin-left:10px;width: 100%;display: flex;justify-content: space-between;"><div>Total Time Spent </div><div> {{"%.0f"|format(total_time['TOTALSUM'] // 24)}} Days {{"%.2f"|format(total_time['TOTALSUM'] % 24)}} Hours</div></div></div>
-        <div class="chart" style="justify-content: space-between;">
+        <div class="chart" style="padding: 0%;">
+            <div id="myChart" style="width:100%;max-height: 500px;"></div></div>
+        <div class="chart" style="justify-content: space-between;display: none;">
         <div class = "hello" style="display: inline;width: 50%;">
             <div class="div">
             {% for row in time_type %}
-        <div class="declaration" style="font-size: 150%;">
-        {{row['type']}}
+        <div id = "{{row['type']}}" class="declaration" style="font-size: 150%;">
+        {{row['typesum']}}
         </div>
             {% endfor %}
         </div>
@@ -142,14 +172,7 @@
         <div class="declaration" style="font-size: 100%;">Left To Right </div>
     </div>
         <br>
-        <table class=" charts-css column show-labels" style="width: 30%;">
-            <tr>
-                {% for row in time_type %}
-                <td style="max-width: 20%;height:{{row['typesum']}}px;">
-                </td>
-                {% endfor %}
-              </tr>
-          </table>
+        
           <br>
         </div>
         <div class="chart"><div class="declaration" style="width: 100%;">Type Wise Time Spent</div></div>
@@ -168,7 +191,4 @@
     </div>
 </div>
 </section>
-
-
-
 {% endblock %}
