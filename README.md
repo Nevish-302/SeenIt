@@ -214,61 +214,80 @@ Screenshots of the application below:
 Laptop / PC
 
 <b>Login Page</b>
+
 ![Screenshot 1](./static/images/readme/login.png)
 
 <b>Index Page</b>
+
 ![Screenshot 2](./static/images/readme/index.png)
 
 <b>Add/Update Page</b>
+
 ![Screenshot 3](./static/images/readme/modify.png)
 
 <b>Search Page</b>
+
 ![Screenshot 4](./static/images/readme/search.png)
 
 <b>Anime SearchResult Page</b>
+
 ![Screenshot 5](./static/images/readme/animesearch.png)
 
 <b>TV series SearchResult Page</b>
+
 ![Screenshot 6](./static/images/readme/televisionsearch.png)
 
 <b>ME Page</b>
+
 ![Screenshot 7](./static/images/readme/me.png)
 
 <b>UserSearch Page</b>
+
 ![Screenshot 8](./static/images/readme/usersearch.png)
 
 <b>Settings Page</b>
+
 ![Screenshot 9](./static/images/readme/settings.png)
 
 Mobile
 
 <b>Login Page</b>
+
 ![Screenshot 1](./static/images/readme/m_login.png)
 
 <b>Index Page</b>
+
 ![Screenshot 2](./static/images/readme/m_index.png)
 
 <b>Add/Update Page</b>
+
 ![Screenshot 3](./static/images/readme/m_modify.png)
 
 <b>Search Page</b>
+
 ![Screenshot 4](./static/images/readme/m_search.png)
 
 <b>Index With Creator Info and menu open</b>
+
 ![Screenshot 5](./static/images/readme/m_index_open.png)
 
 <b>TV series SearchResult Page</b>
+
 ![Screenshot 6](./static/images/readme/m_televisionsearch.png)
 
 <b>ME Page</b>
+
 ![Screenshot 7](./static/images/readme/m_me.png)
 
 <b>UserSearch Page</b>
+
 ![Screenshot 8](./static/images/readme/m_usersearch.png)
 
 <b>Settings Page</b>
+
 ![Screenshot 9](./static/images/readme/m_settings.png)
 
+<p align="right">(<a href="#top">back to top</a>)</p>
 <!-- ROADMAP -->
 ## Roadmap
 
@@ -404,12 +423,15 @@ Project Link: [https://github.com/Nevish-302/SeenIt](https://github.com/Nevish-3
 <!-- ACKNOWLEDGMENTS -->
 ## Authors
 
-* [Abe](https:github.com/abe-101)
+* [Nevish-302](https:github.com/Nevish-302)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 
 ## Credits
 
 * [pngwing](https://www.pngwing.com/)
-* Abe 
+* [cs50](https://cs50.harvard.edu/x/2022/)  
 * [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
 <p align="right">(<a href="#top">back to top</a>)</p>
 
