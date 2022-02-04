@@ -248,8 +248,8 @@ Laptop / PC
 <b>Settings Page</b>
 
 ![Screenshot 9](./static/images/readme/settings.png)
-
-Mobile
+#
+## Mobile
 
 <b>Login Page</b>
 
