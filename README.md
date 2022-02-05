@@ -65,7 +65,7 @@
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#Local Installation">Local Installation</a></li>
+        <li><a href="#Installation">Installation</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -130,13 +130,13 @@ pip install Flask-APScheduler
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-## Local Installation
+## Installation
 
 
 Clone Project:
 
 ```console
-git clone git@github.com:abe-101/bagel-shop.git
+git clone git@github.com:Nevish-302/SeenIt.git
 ```
 
 install Prerequisites
