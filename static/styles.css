@@ -42,7 +42,7 @@ body {
     font-size: 20px;
     background:url(/static/images/backgrounds/b1.png);
     background-repeat:no-repeat;
-    background-attachment:;
+    background-attachment:fixed;
 }
 .heading
 {
