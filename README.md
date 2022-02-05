@@ -136,7 +136,7 @@ pip install Flask-APScheduler
 Clone Project:
 
 ```console
-git clone git@github.com:Nevish-302/SeenIt.git
+git clone git@github.com/Nevish-302/SeenIt.git
 ```
 
 install Prerequisites
