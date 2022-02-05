@@ -36,7 +36,7 @@
 <h3 align="center">SeenIt</h3>
 
   <p align="center">
-    project_description
+    Interactive Entertainment Database
     <br />
     <a href="https://github.com/Nevish-302/SeenIt"><strong>Explore the docs »</strong></a>
     <br />
@@ -82,7 +82,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<b>#topic HEAD</b>
+<b>Interactive Entertainment Database</b>
 <br>
 A Webapp where you can save progress of Anime/ Manga/ TV Series/ AsianDramas that you are watching or have already watched a few times. You can track how many hours you've spent in each of those and share it with others as well. You can also search info for TV shows and anime you might wanna add. Lastly, you can customize your profile here. 
 <p align="right">(<a href="#top">back to top</a>)</p>
