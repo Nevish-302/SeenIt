@@ -41,7 +41,7 @@
     <a href="https://github.com/Nevish-302/SeenIt"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/Nevish-302/SeenIt">View Demo</a>
+    <a href="https://youtu.be/EZ4qqUSisVE">View Demo</a>
     ·
     <a href="https://github.com/Nevish-302/SeenIt/issues">Report Bug</a>
     ·
