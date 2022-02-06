@@ -84,6 +84,7 @@ body {
 }
 .l{
     font-size: 150%;
+    margin-bottom: 1%;
     min-width: fit-content;
 }
 .sec_form
