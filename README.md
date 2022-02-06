@@ -161,7 +161,7 @@ export MAIL_DEFAULT_SENDER=SeenIt
 export API_KEY_JIKAN=#YOUR_API_IMDB_KEY#
 export API_KEY_IMDB=#YOUR_API_IMDB_KEY#
 export MAIL_PASSWORD=#YOUR_PASSWORD_HERE#
-export MAIL_USERNAME=shiven302@gmail.com
+export MAIL_USERNAME=YOUR_USERNAME_HERE#
 ```
 You can get your IMDB API KEY at https://imdb-api.com/
 <br>
