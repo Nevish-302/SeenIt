@@ -139,7 +139,7 @@ Clone Project:
 git clone git@github.com/Nevish-302/SeenIt.git
 ```
 
-install Prerequisites
+Install Prerequisites
 
 ## Database ##
 Create a new database SeenIt.db and replace the one provided by it. 
@@ -185,7 +185,7 @@ flask run
 * Password protected login
 * Email confirmation
 * Index page 
-  * Click on any of the tabs to view selected type onle
+  * Click on any of the tabs to view selected type only
   * Search on local search to search through already added data
 * Add / Update page
   * Input information in the boxes provided and click on add
@@ -323,7 +323,7 @@ Laptop / PC
     - [x] Bar Graph Base On TypeWise
 - [x] User Search
     - [x] Search for users other than you as long as you have their email id
-    - [x] This feature can be used without login/registeration as well
+    - [x] This feature can be used without login/registration as well
 - [x] Settings
     - [x] Verify Personal Data
     - [x] Change Profile Picture
