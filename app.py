@@ -6,7 +6,7 @@ import email
 from cs50 import SQL
 from datetime import datetime
 from flask import Flask, flash, redirect, render_template, request, session, url_for
-#@GDSC
+#@GDSC is cool
 # Configure application
 app = Flask(__name__)
 
